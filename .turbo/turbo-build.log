@@ -1,7 +1,0 @@
-[36m@mintdrop/contracts:build[0m: cache hit, replaying output [2m13ea4b94dc6c8d17[0m
-[36m@mintdrop/contracts:build: [0m
-[36m@mintdrop/contracts:build: [0m> @mintdrop/contracts@0.0.0 build /Users/ian/Projects/mintdrop/app/packages/blockchain
-[36m@mintdrop/contracts:build: [0m> hardhat compile && tsc
-[36m@mintdrop/contracts:build: [0m
-[36m@mintdrop/contracts:build: [0mNothing to compile
-[36m@mintdrop/contracts:build: [0mNo need to generate any newer typings.
