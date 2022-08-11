@@ -1,0 +1,5 @@
+[32m@mintdrop/contracts:clean[0m: cache hit, replaying output [2m1266f663b4512635[0m
+[32m@mintdrop/contracts:clean: [0m
+[32m@mintdrop/contracts:clean: [0m> @mintdrop/contracts@0.0.0 clean /Users/ian/Projects/mintdrop/app/packages/blockchain
+[32m@mintdrop/contracts:clean: [0m> hardhat clean && rm -rf artifacts cache build dist
+[32m@mintdrop/contracts:clean: [0m
