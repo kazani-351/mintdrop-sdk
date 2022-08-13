@@ -1,13 +1,31 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["es2019", "es2017", "dom"],
     "module": "commonjs",
-    "target": "es6",
-    "declaration": true,
-    "sourceMap": true,
-    "lib": ["es6"],
-    "outDir": "dist",
-    "esModuleInterop": true
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2021",
+    "types": [
+      "node",
+      // TODO: Remove once issue is fixed
+      // https://github.com/microsoft/TypeScript/issues/42873
+      "@ethersproject/providers"
+    ]
   },
-  "include": ["src/index.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/dist/**"],
+  "include": ["packages/**/*"]
 }

@@ -1,0 +1,16 @@
+.rainbow > div {
+	width: 100% !important;
+	
+}
+
+.rainbow button {
+	width: 100% !important;
+}
+
+.rainbow button div {
+	width: 100% !important;
+	text-align: center !important;
+	@apply bg-purple-700 !important;
+	@apply rounded-md !important;
+	@apply py-3 !important;
+}
