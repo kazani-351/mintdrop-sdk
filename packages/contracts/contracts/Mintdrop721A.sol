@@ -30,6 +30,12 @@ contract Mintdrop721A is ERC721A, Ownable, GroupMintable {
     _;
   }
 
+  modifier requireValidCount(uint256 count) {
+    if (maxSupply != 0 && _totalMinted() + count > maxSupply)
+      revert ExceedsMaxSupply();
+    _;
+  }
+
   constructor(
     string memory name,
     string memory symbol,
@@ -40,31 +46,30 @@ contract Mintdrop721A is ERC721A, Ownable, GroupMintable {
   ) ERC721A(name, symbol) {}
 
   // @notice _mint for specific group signature
-  function _groupMint(
-    bytes calldata signature,
-    address to,
-    uint256 quantity
-  ) internal {
+  function groupMint(bytes calldata signature, uint256 count)
+    external
+    payable
+    requireValidCount(count)
+  {
     address group = _recoverSigner(signature);
 
     // Note - we probably want to move this check into the _groupMint function,
     // to provide the ability for discounting on group mints (ala CPG POP, etc)
     // if (msg.value < price * count) revert InsufficientPayment();
 
-    require(_isGroupPaymentCorrect(group, quantity), "InsufficientPayment");
+    require(_isGroupPaymentCorrect(group, count), "InsufficientPayment");
     require(
-      _isMaxPerWallet(group, _numberMinted(msg.sender) + quantity),
+      _isMaxPerWallet(group, _numberMinted(msg.sender) + count),
       "ExceedsGroupMaxPerWallet"
     );
     require(_isGroupTimeCorrect(group), "MintNotStarted");
 
     _incGroupCount(group);
-    _mint(to, quantity);
+    _mint(msg.sender, count);
   }
 
   // @dev Public minting without signature.
-  function publicMint(uint256 count) external payable {
-    if (_totalMinted() + count > maxSupply) revert ExceedsMaxSupply();
+  function publicMint(uint256 count) external payable requireValidCount(count) {
     if (msg.value < price * count) revert InsufficientPayment();
 
     // Is public minting active?
@@ -79,9 +84,11 @@ contract Mintdrop721A is ERC721A, Ownable, GroupMintable {
   }
 
   // @dev Owner of contract can mint whatever they want.
-  function ownerMint(address recipient, uint256 count) external onlyOwner {
-    if (maxSupply != 0 && totalSupply() + count > maxSupply)
-      revert ExceedsMaxSupply();
+  function ownerMint(address recipient, uint256 count)
+    external
+    onlyOwner
+    requireValidCount(count)
+  {
     _mint(recipient, count);
   }
 

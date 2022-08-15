@@ -28,17 +28,15 @@ contract AccessPass is Mintdrop721A, ERC2981, BaseTokenURI {
     }
   }
 
-  // @dev Minting based on access-list inclusion.
-  function groupMint(bytes calldata signature, uint256 count) external payable {
-    _groupMint(signature, msg.sender, count);
-  }
-
   /**
     TODO - Make this configurable, which means we probably need to generate and compile the contract
     @dev Override ERC721A's initial token index.
      */
   function _startTokenId() internal pure override returns (uint256) {
-    return 0;
+    // This might frustrate a lot of people, but the Mintdrop (opinionated) view is that this is a human convention not a machine convention.
+    // It's about perception of a set of tokens to humans, not an array index. If it were the latter it would 100000% start at 0.
+    // Humans have a hard time with things that start at 0. Even in Europe (and most of the world for that matter), floor 0 = base floor. 1st floor is still 1 in this case.
+    return 1;
   }
 
   // @dev: Include a mechanism to withdraw ether on the contract

@@ -12,6 +12,7 @@
     "@mintdrop/sdk": "workspace:*",
     "@rainbow-me/rainbowkit": "^0.4.6",
     "ethers": "^5.6.8",
+    "moment": "^2.29.3",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",

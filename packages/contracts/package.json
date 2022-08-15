@@ -1,6 +1,6 @@
 {
   "name": "@mintdrop/contracts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The Mintdrop suite of contracts and utils.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
     "dev": "nodemon --exec pnpm build",
     "test": "hardhat test",
     "test:watch": "nodemon --exec \"hardhat test\"",
-    "verify": "npx hardhat verify --network rinkeby 0xF507385CB4f8AB7f3A95002Faa4EE8265702A6cB --constructor-args build/arguments.js"
+    "verify": "npx hardhat verify --network rinkeby 0x858c7e0C32B798992FF9b811F54574fE8E5E33CF --constructor-args verify/arguments.js"
   },
   "author": "",
   "license": "ISC",

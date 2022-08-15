@@ -8,11 +8,6 @@ contract GroupsMock is Mintdrop721A {
     Mintdrop721A(name, symbol, 10000, 0, 0, payable(0x0))
   {}
 
-  // @dev Minting based on access-list inclusion.
-  function mint(bytes calldata signature, uint256 count) external payable {
-    _groupMint(signature, _msgSender(), count);
-  }
-
   function addGroup(
     address signer,
     uint64 startTimestamp,

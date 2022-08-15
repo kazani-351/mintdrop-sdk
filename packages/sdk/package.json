@@ -4,13 +4,17 @@
   "version": "0.0.15",
   "type": "module",
   "main": "./dist/sdk.cjs",
-  "module": "dist/wagmi.esm.js",
+  "module": "dist/sdk.esm.js",
   "types": "./dist/sdk.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc && tsup --clean",
     "dev": "nodemon"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "keywords": [],
   "author": "",
   "license": "MIT",
