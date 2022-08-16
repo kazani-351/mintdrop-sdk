@@ -2,8 +2,8 @@
   "name": "@mintdrop/widget",
   "description": "",
   "version": "0.0.1",
-  "source": "src/widget.tsx",
-  "main": "./dist/widget.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "NODE_ENV=production rollup -c rollup.prod.js",

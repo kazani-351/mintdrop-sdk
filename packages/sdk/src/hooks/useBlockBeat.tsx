@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
 import { useProvider, useWebSocketProvider } from "wagmi"
 
-export function useBlockBeat() {
+type Opts = { initial?: boolean }
+
+export function useBlockBeat(opts: Opts = {}) {
+  const { initial = true } = opts || {}
   const provider = useProvider()
   const wsProvider = useWebSocketProvider()
   const [block, setBlock] = useState<number>()
 
   useEffect(() => {
-    provider.getBlockNumber().then(setBlock)
-  }, [provider])
+    if (initial) provider.getBlockNumber().then(setBlock)
+  }, [initial, provider])
 
   useEffect(() => {
     if (!wsProvider) return

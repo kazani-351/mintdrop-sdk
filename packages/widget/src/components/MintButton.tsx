@@ -1,9 +1,8 @@
 import moment from "moment"
-import React, { useCallback, useState } from "react"
+import React from "react"
 import { useAccount, useConnect, useNetwork, useSwitchNetwork } from "wagmi"
 
 import useHeartbeat from "../hooks/useHeartbeat"
-import ConnectedAs from "./ConnectedAs"
 
 export default function MintButton(props) {
   const { chainId, time, onPublicMint, isMinting, isSuccess } = props
@@ -56,15 +55,12 @@ export default function MintButton(props) {
 
   if (isLive) {
     return (
-      <div>
-        <button
-          className="block w-full p-3 text-sm font-semibold text-white uppercase rounded-lg bg-blue hover:bg-blue-600"
-          onClick={onPublicMint}
-        >
-          Mint Now
-        </button>
-        <ConnectedAs className="mt-3" />
-      </div>
+      <button
+        className="block w-full p-3 text-sm font-semibold text-white uppercase rounded-lg bg-blue hover:bg-blue-600"
+        onClick={onPublicMint}
+      >
+        Mint Now
+      </button>
     )
   }
 

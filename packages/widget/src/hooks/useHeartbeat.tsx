@@ -8,9 +8,9 @@ export default function useHeartbeat(ms, until = null) {
     const timeout = setInterval(() => {
       setTick(new Date().getMilliseconds())
       if (until && moment().isAfter(until)) clearTimeout(timeout)
-    }, 500)
+    }, ms)
     return () => clearTimeout(timeout)
-  }, [until])
+  }, [ms, until])
 
   return tick
 }

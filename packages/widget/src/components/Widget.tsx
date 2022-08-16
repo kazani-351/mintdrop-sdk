@@ -2,6 +2,7 @@ import moment from "moment"
 import React, { useState } from "react"
 import { useContract, useSigner } from "wagmi"
 
+import ConnectedAs from "./ConnectedAs"
 import Group from "./Group"
 import MintButton from "./MintButton"
 import PoweredBy from "./PoweredBy"
@@ -41,6 +42,9 @@ export default function Widget(props) {
           setSuccess(false)
         }, 3000)
       })
+      .catch(() => {
+        setMinting(false)
+      })
   }
 
   return (
@@ -75,6 +79,8 @@ export default function Widget(props) {
           time={time}
           onPublicMint={handlePublicMint}
         />
+
+        <ConnectedAs className="mt-3" />
 
         <PoweredBy className="w-auto mt-5" />
       </div>

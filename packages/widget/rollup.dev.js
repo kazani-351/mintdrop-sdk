@@ -7,7 +7,6 @@ config.output = [
   {
     file: "dist/widget.dev.js",
     format: "iife",
-    sourcemap: true,
     inlineDynamicImports: true
   }
 ]

@@ -9,6 +9,8 @@ import Providers from "./components/Providers"
 import Widget from "./components/Widget"
 import { init } from "./lib/api"
 
+export { default as Widget } from "./components/Widget"
+
 type Props = {
   el: HTMLDivElement
   apihost?: string
@@ -19,7 +21,7 @@ type Props = {
 if (typeof window !== "undefined") {
   const load = async (props: Props) => {
     const {
-      apihost = process.env.API_HOST || "https://api.mintdrop.xyz",
+      apihost = "https://api.mintdrop.xyz",
       drop,
       debug = process.env.NODE_ENV === "development",
       el
@@ -43,7 +45,7 @@ if (typeof window !== "undefined") {
             bytecode={bytecode}
           />
         </div>
-        {debug && <Debug />}
+        {/* {debug && <Debug />} */}
       </Providers>,
       el
     )
@@ -59,12 +61,14 @@ if (typeof window !== "undefined") {
       if (!["async", "src"].includes(attr))
         acc[attr] = document.currentScript.getAttribute(attr)
       return acc
-    }, {})
+    }, {}) as object
 
-  load({
-    el: container,
-    ...attributes
-  } as Props)
+  if (attributes.hasOwnProperty("drop")) {
+    load({
+      el: container,
+      ...attributes
+    } as Props)
+  }
 
   // @ts-ignore
   window.mintdrop = (attrs) => {

@@ -1,5 +1,6 @@
 export * from "./useBlockBeat"
-export * from "./useContract"
+// export * from "./useContract"
 export * from "./useCounts"
-export * from "./useSignatures"
+export * from "./useHeartbeat"
+// export * from "./useSignatures"
 export * from "./useTiming"
