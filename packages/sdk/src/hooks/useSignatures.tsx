@@ -1,5 +1,5 @@
 import { ethers } from "ethers"
-import { useAsync } from "react-use"
+import { useEffect } from "react"
 
 import { useBlockBeat } from "./useBlockBeat"
 
@@ -17,10 +17,10 @@ export function useSignature(
 
   const signature = getSignature(address)
 
-  const { value: isUsed } = useAsync(async () => {
+  const { value: isUsed } = useEffect(() => {
     if (!address || !signature) return null
     return contract.signatureUsed(address, signature.sig).catch(console.error)
-  }, [address, block])
+  }, [contract, signature, address, block])
 
   if (!address || !signature || isUsed) return null
 
