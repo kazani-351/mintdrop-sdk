@@ -1,7 +1,7 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
 
-export default function useHeartBeat(ms, until = null) {
+export function useHeartBeat(ms, until = null) {
   const [tick, setTick] = useState()
 
   useEffect(() => {
