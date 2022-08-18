@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import moment, { Moment } from "moment"
 
-import useHeartbeat from "../hooks/useHeartbeat"
+import useHeartBeat from "../hooks/useHeartBeat"
 
 type GroupProps = {
   live: boolean
@@ -12,7 +12,7 @@ type GroupProps = {
 
 export default function Group(props: GroupProps) {
   const { name, time, last } = props
-  useHeartbeat(100, time)
+  useHeartBeat(100, time)
   const live = moment().isSameOrAfter(time)
 
   return (

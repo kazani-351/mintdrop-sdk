@@ -2,7 +2,7 @@ import moment from "moment"
 import React from "react"
 import { useAccount, useConnect, useNetwork, useSwitchNetwork } from "wagmi"
 
-import useHeartbeat from "../hooks/useHeartbeat"
+import useHeartBeat from "../hooks/useHeartBeat"
 
 export default function MintButton(props) {
   const { chainId, time, onPublicMint, isMinting, isSuccess } = props
@@ -11,7 +11,7 @@ export default function MintButton(props) {
   const { chain: network } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  useHeartbeat(100, time)
+  useHeartBeat(100, time)
 
   const isLive = moment().isSameOrAfter(time)
 
