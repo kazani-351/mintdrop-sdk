@@ -225,6 +225,7 @@ importers:
     specifiers:
       classnames: ^2.3.1
       ethers: ^5.6.8
+      lodash: ^4.17.21
       moment: ^2.29.3
       nodemon: ^2.0.16
       react: ^18.2.0
@@ -234,6 +235,7 @@ importers:
       wagmi: 0.5.x || 0.6.x
     dependencies:
       classnames: 2.3.1
+      lodash: 4.17.21
       moment: 2.29.4
     devDependencies:
       ethers: 5.6.9
