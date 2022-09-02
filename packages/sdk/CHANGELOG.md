@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.3.7
+
+### Patch Changes
+
+- Adding BIPs helpers
+- Updated dependencies
+  - @mintdrop/contracts@0.3.7
+
 ## 0.3.6
 
 ### Patch Changes

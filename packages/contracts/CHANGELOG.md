@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.7
+
+### Patch Changes
+
+- Adding BIPs helpers
+
 ## 0.3.6
 
 ### Patch Changes
