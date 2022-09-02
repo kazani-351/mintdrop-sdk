@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "outDir": "dist",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "jsx": "react",
     "declaration": true,
+    "declarationMap": true,
     "declarationDir": "dist",
-    "emitDeclarationOnly": true
+    "sourceMap": true,
+    // "emitDeclarationOnly": true,
+    "lib": ["ES2017", "dom"]
   },
-  "include": ["src/sdk.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

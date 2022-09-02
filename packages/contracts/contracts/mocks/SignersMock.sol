@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.9;
 
-import "../Mintdrop721A.sol";
+import "hardhat/console.sol";
 
-contract SignersMock is Mintdrop721A {
-  constructor() Mintdrop721A("SignersMock", "", 10000, 0, 0, payable(0x0)) {}
+import "../extensions/SignatureMintable.sol";
+
+contract SignersMock is SignatureMintable {
+  constructor() {}
 
   function check(bytes calldata signature) public view returns (address) {
     bytes32 message = _generateMessage(msg.sender);

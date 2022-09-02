@@ -9,20 +9,18 @@ Hook to access current and new block mining.
 import { useBlockBeat } from "@mintdrop/sdk"
 ```
 
+## Example
+
+{% example name="useBlockBeat" / %}
+
 ## Usage
 
 ```ts
 import { useBlockBeat } from "@mintdrop/sdk"
 
-const Block = () => {
+const Example = () => {
   const block = useBlockBeat()
-
-  return (
-    <div>
-      <code>useBlockBeat()</code>
-      <p>Block {block}</p>
-    </div>
-  )
+  return <p>Block {block}</p>
 }
 ```
 

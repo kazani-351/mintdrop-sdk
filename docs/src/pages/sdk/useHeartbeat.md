@@ -1,21 +1,21 @@
 ---
-title: useHeartbeat
+title: useHeartBeat
 description: Hook to provide time-based heartbeat for components.
 ---
 
 Hook to provide time-based heartbeat for components.
 
 ```
-import { useHeartbeat } from "@mintdrop/sdk"
+import { useHeartBeat } from "@mintdrop/sdk"
 ```
 
 ## Usage
 
 ```ts
-import { useHeartbeat } from "@mintdrop/sdk"
+import { useHeartBeat } from "@mintdrop/sdk"
 
-const Heartbeat = () => {
-  useHeartbeat(1000)
+const Example = () => {
+  useHeartBeat(1000)
   const date = new Date()
 
   return <div>Current date/time is {new Date().toLocaleString()}</div>

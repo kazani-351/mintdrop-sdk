@@ -47,7 +47,7 @@ export function useSEO(pageProps) {
 
   let pageTitle =
     pageProps?.markdoc?.frontmatter.pageTitle ||
-    `${pageProps?.markdoc?.frontmatter.title} - Docs`
+    `${pageProps?.markdoc?.frontmatter.title} - Mintdrop Docs`
 
   let description = pageProps?.markdoc?.frontmatter.description
 

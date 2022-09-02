@@ -5,15 +5,17 @@ export const navigation = [
   {
     title: "Getting Started",
     links: [
-      { title: "Installation", href: "/" }
-      // { title: "Core concepts", href: "/docs/concepts" },
-      // { title: "Best Practices", href: "/docs/concepts" }
+      { title: "Installation", href: "/" },
+      { title: "Next.js", href: "/install/nextjs" }
+      //     { title: "Rainbowkit", href: "/rainbowkit" },
+      //     { title: "Connectkit", href: "/connectkit" },
+      //     { title: "Web3Modal", href: "/providers/web3modal" }
     ]
   },
-  {
-    title: "Embed",
-    links: [{ title: "Widget", href: "/widget" }]
-  },
+  // {
+  //   title: "Embed",
+  //   links: [{ title: "Widget", href: "/widget" }]
+  // },
   // {
   //   title: "Components",
   //   links: [
@@ -22,19 +24,29 @@ export const navigation = [
   //     { title: "Widget", href: "/sdk/Widget" }
   //   ]
   // },
-  {
-    title: "Hooks",
-    links: [
-      { title: "useBlockBeat", href: "/sdk/useBlockBeat" },
-      { title: "useCounts", href: "/sdk/useCounts" },
-      { title: "useHeartbeat", href: "/sdk/useHeartbeat" },
-      { title: "useTiming", href: "/sdk/useTiming" }
-    ]
-  }
+
   // {
   //   title: "Smart Contracts",
   //   links: [{ title: "Overview", href: "/contracts" }]
-  // }
+  // },
+
+  {
+    title: "React SDK",
+    links: [
+      { title: "<MintdropProvider/>", href: "/sdk/MintdropProvider" },
+      { title: "useBlockBeat", href: "/sdk/useBlockBeat" },
+      { title: "useContract", href: "/sdk/useContract" },
+      { title: "useCounts", href: "/sdk/useCounts" },
+      { title: "useDrop", href: "/sdk/useDrop" },
+      { title: "useEstimation", href: "/sdk/useEstimation" },
+      { title: "useGroup", href: "/sdk/useGroup" },
+      { title: "useHeartbeat", href: "/sdk/useHeartbeat" },
+      { title: "useMinting", href: "/sdk/useMinting" },
+      { title: "usePrices", href: "/sdk/usePrices" },
+      { title: "useSignature", href: "/sdk/useSignature" },
+      { title: "useTiming", href: "/sdk/useTiming" }
+    ]
+  }
 ]
 
 function useTableOfContents(tableOfContents) {

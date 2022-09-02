@@ -24,7 +24,6 @@ task("accounts", "Prints the list of accounts", async (_, hre) => {
 
 const config: HardhatUserConfig = {
   solidity: {
-    // version: "0.8.4",
     version: "0.8.9",
     settings: {
       optimizer: {
@@ -41,20 +40,24 @@ const config: HardhatUserConfig = {
     // externalArtifacts: ["externalArtifacts/*.json"] // optional array of glob patterns with external artifacts to process (for example external libs from node_modules)
   },
 
-  networks: {
-    rinkeby: {
-      url: "https://green-polished-mountain.rinkeby.quiknode.pro/6d05929704af059cb17db66dd83fe4955763f5de/"
-    }
-  },
+  networks: {},
 
-  // gasReporter: {
-  //   enabled: process.env.REPORT_GAS !== undefined,
-  //   currency: "USD"
-  // },
+  gasReporter: {
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+    currency: "USD"
+  },
 
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY
   }
+}
+
+if (process.env.RINKEBY_URL) {
+  Object.assign(config, {
+    rinkeby: {
+      url: process.env.RINKEBY_URL
+    }
+  })
 }
 
 export default config

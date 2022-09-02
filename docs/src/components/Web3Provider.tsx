@@ -25,7 +25,7 @@ const wagmiClient = createClient({
   // webSocketProvider
 })
 
-const App = ({ children }: { children: JSX.Element }) => {
+const Web3Provider = ({ children }: { children: JSX.Element }) => {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
@@ -33,4 +33,4 @@ const App = ({ children }: { children: JSX.Element }) => {
   )
 }
 
-export default App
+export default Web3Provider

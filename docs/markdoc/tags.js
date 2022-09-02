@@ -1,5 +1,7 @@
 import { Callout } from "@/components/Callout"
 import { QuickLink, QuickLinks } from "@/components/QuickLinks"
+
+import Example from "@/components/Example"
 import Widget from "@/components/Widget"
 
 const tags = {
@@ -45,6 +47,12 @@ const tags = {
   },
   widget: {
     render: Widget
+  },
+  example: {
+    render: Example,
+    attributes: {
+      name: { type: String }
+    }
   }
 }
 

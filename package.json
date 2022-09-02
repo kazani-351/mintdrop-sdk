@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm -r build",
-    "dev": "pnpm -r dev"
+    "clean": "pnpm -r clean",
+    "build": "pnpm --aggregate-output --enable-pre-post-scripts -r build",
+    "dev": "pnpm --aggregate-output --enable-pre-post-scripts -r dev",
+    "generate": "pnpm -r generate",
+    "release": "pnpm --filter \"@mintdrop/*\" publish"
   },
   "engines": {
     "node": "^18.0.0"

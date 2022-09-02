@@ -5,7 +5,8 @@ import Head from "next/head"
 import { IntercomProvider } from "react-use-intercom"
 
 import { Layout } from "@/components/Layout"
-import Password from "@/components/Password"
+// import Password from "@/components/Password"
+import Web3Provider from "@/components/Web3Provider"
 import colors from "@/lib/colors"
 import { useSEO } from "@/lib/seo"
 
@@ -21,7 +22,8 @@ function App(props) {
         <title>{pageTitle}</title>
         {description && <meta name="description" content={description} />}
       </Head>
-      <Password>
+      {/* <Password> */}
+      <Web3Provider>
         <Layout title={title} tableOfContents={tableOfContents}>
           <IntercomProvider
             appId={INTERCOM_APP_ID}
@@ -33,7 +35,8 @@ function App(props) {
             <Component {...pageProps} />
           </IntercomProvider>
         </Layout>
-      </Password>
+      </Web3Provider>
+      {/* </Password> */}
     </div>
   )
 }

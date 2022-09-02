@@ -52,3 +52,6 @@ public/uploads
 
 # Redis
 dump.rdb
+
+# changesets
+.changeset

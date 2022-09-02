@@ -17,3 +17,5 @@ npm i @mintdrop/sdk wagmi ethers
 ```
 
 Note - Mindrop SDK currently requires wagmi + ethers.
+
+Follow the instructions on [Wagmi](https://wagmi.sh/docs/getting-started#quick-start) for more info.

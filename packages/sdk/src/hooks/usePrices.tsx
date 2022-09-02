@@ -29,7 +29,7 @@ type CoinbaseResponse = {
   }
 }
 
-export default function usePrices(opts: Opts = {}): UsePrices {
+export function usePrices(opts: Opts = {}): UsePrices {
   const currency = "USD"
   const [loading, setLoading] = useState(false)
   const [prices, setPrices] = useState<Prices>()

@@ -1,41 +1,51 @@
 {
   "name": "@mintdrop/sdk",
   "description": "",
-  "version": "0.1.0",
+  "keywords": [
+    "mintdrop",
+    "wagmi",
+    "ethers",
+    "web3",
+    "react"
+  ],
+  "author": "ianh.eth",
+  "version": "0.3.6",
   "type": "module",
   "main": "./dist/sdk.cjs",
-  "module": "dist/sdk.esm.js",
+  "module": "./dist/sdk.cjs",
   "types": "./dist/sdk.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "tsc && tsup --clean",
+    "build": "tsup --clean && tsc --emitDeclarationOnly",
     "dev": "nodemon"
   },
   "files": [
     "dist",
     "README.md"
   ],
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "dependencies": {
+    "@mintdrop/contracts": "workspace:*",
     "classnames": "^2.3.1",
+    "cross-fetch": "^3.1.5",
+    "dayjs": "^1.11.5",
     "lodash": "^4.17.21",
-    "moment": "^2.29.3"
+    "moment": "^2.29.3",
+    "truncate-eth-address": "^1.0.2"
   },
   "devDependencies": {
-    "ethers": "^5.6.8",
     "nodemon": "^2.0.16",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4",
-    "wagmi": "0.5.x || 0.6.x"
+    "ethers": "^5.6.8",
+    "react": ">=17",
+    "react-dom": ">=17",
+    "wagmi": "^0.6.2"
   },
   "peerDependencies": {
     "ethers": "^5.6.8",
     "react": ">=17",
     "react-dom": ">=17",
-    "wagmi": "0.5.x || 0.6.x"
+    "wagmi": "^0.6.2"
   }
 }
