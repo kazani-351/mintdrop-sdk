@@ -14,6 +14,8 @@ export function etherscanHost(chainId = 1) {
       return `https://ropsten.etherscan.io`
     case 4:
       return `https://rinkeby.etherscan.io`
+    case 5:
+      return `https://goerli.etherscan.io`
     case 137:
       return `https://polygonscan.com`
     case 80001:
