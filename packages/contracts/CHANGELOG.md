@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.8
+
+### Patch Changes
+
+- Adding missing goerli helper url for etherscan
+
 ## 0.3.7
 
 ### Patch Changes
