@@ -1,4 +1,3 @@
-import lodash from "lodash"
 import { useCallback, useEffect, useState } from "react"
 
 type Exchange = "COINBASE"
@@ -55,7 +54,7 @@ export function usePrices(opts: Opts = {}): UsePrices {
 }
 
 // @see https://developers.coinbase.com/api/v2#get-currencies
-async function getCoinbasePrices(currency) {
+async function getCoinbasePrices(currency: string) {
   const prices = await fetch(
     `https://api.coinbase.com/v2/exchange-rates?currency=${currency}`
   )
@@ -69,5 +68,7 @@ async function getCoinbasePrices(currency) {
     )
     .then(Object.fromEntries)
 
-  return lodash.pick(prices, ["ETH", "MATIC"])
+  const { ETH, MATIC } = prices
+
+  return prices
 }

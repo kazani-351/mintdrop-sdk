@@ -14,6 +14,10 @@
   "main": "./dist/sdk.cjs",
   "module": "./dist/sdk.cjs",
   "types": "./dist/sdk.d.ts",
+  "exports": {
+    "import": "./dist/sdk.esm.js",
+    "require": "./dist/sdk.cjs"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsup --clean && tsc --emitDeclarationOnly",
@@ -27,20 +31,17 @@
   "dependencies": {
     "@mintdrop/contracts": "workspace:*",
     "classnames": "^2.3.1",
-    "cross-fetch": "^3.1.5",
-    "dayjs": "^1.11.5",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.3",
-    "truncate-eth-address": "^1.0.2"
+    "dayjs": "^1.11.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16",
-    "tsup": "^6.2.2",
-    "typescript": "^4.7.4",
+    "@types/react": "^18.0.18",
     "ethers": "^5.6.8",
+    "nodemon": "^2.0.16",
     "react": ">=17",
     "react-dom": ">=17",
-    "wagmi": "^0.6.2"
+    "tsup": "^6.2.2",
+    "typescript": "^4.7.4",
+    "wagmi": "0.5.x || 0.6.x"
   },
   "peerDependencies": {
     "ethers": "^5.6.8",

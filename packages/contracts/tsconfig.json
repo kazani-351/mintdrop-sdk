@@ -6,6 +6,5 @@
     "declaration": true,
     "declarationDir": "dist"
   },
-  "include": ["dist/index.ts"],
   "exclude": ["node_modules"]
 }

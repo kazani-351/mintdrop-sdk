@@ -1,8 +1,7 @@
 // @todo - move me into some sort of pnpm workspace config/ dir
 
 import { defineConfig } from "tsup"
-
-const pkg = require("./package.json")
+import pkg from "./package.json"
 
 export default defineConfig({
   entry: ["src/sdk.ts"],

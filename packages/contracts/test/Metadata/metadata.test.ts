@@ -36,7 +36,7 @@ describe("Groups", () => {
 
     it("should use the base URI", async function () {
       const supply = await this.contract.totalSupply()
-      expect(supply).to.eq(1)
+      expect(supply.toNumber()).to.eq(1)
       const tokenURI = await this.contract.tokenURI(1)
       expect(tokenURI).to.eq("https://meta.mintdrop.xyz/123/1")
     })

@@ -49,31 +49,34 @@ export const navigation = [
   }
 ]
 
-function useTableOfContents(tableOfContents) {
-  let [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id)
+function useTableOfContents(tableOfContents: any[]) {
+  const [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id)
 
-  let getHeadings = useCallback((tableOfContents) => {
+  const getHeadings = useCallback((tableOfContents: any[]) => {
     return tableOfContents
-      .flatMap((node) => [node.id, ...node.children.map((child) => child.id)])
-      .map((id) => {
-        let el = document.getElementById(id)
+      .flatMap((node: { id: any; children: any[] }) => [
+        node.id,
+        ...node.children.map((child: { id: any }) => child.id)
+      ])
+      .map((id: string) => {
+        const el = document.getElementById(id)
         if (!el) return
 
-        let style = window.getComputedStyle(el)
-        let scrollMt = parseFloat(style.scrollMarginTop)
+        const style = window.getComputedStyle(el)
+        const scrollMt = parseFloat(style.scrollMarginTop)
 
-        let top = window.scrollY + el.getBoundingClientRect().top - scrollMt
+        const top = window.scrollY + el.getBoundingClientRect().top - scrollMt
         return { id, top }
       })
   }, [])
 
   useEffect(() => {
     if (tableOfContents.length === 0) return
-    let headings = getHeadings(tableOfContents)
+    const headings = getHeadings(tableOfContents)
     function onScroll() {
-      let top = window.scrollY
+      const top = window.scrollY
       let current = headings[0].id
-      for (let heading of headings) {
+      for (const heading of headings) {
         if (top >= heading.top) {
           current = heading.id
         } else {
@@ -92,17 +95,17 @@ function useTableOfContents(tableOfContents) {
   return currentSection
 }
 
-export function useNav(tableOfContents) {
+export function useNav(tableOfContents: any) {
   const router = useRouter()
   // let isHomePage = router.pathname === "/"
-  let allLinks = navigation.flatMap((section) => section.links)
-  let linkIndex = allLinks.findIndex((link) => link.href === router.pathname)
-  let previousPage = allLinks[linkIndex - 1]
-  let nextPage = allLinks[linkIndex + 1]
-  let section = navigation.find((section) =>
+  const allLinks = navigation.flatMap((section) => section.links)
+  const linkIndex = allLinks.findIndex((link) => link.href === router.pathname)
+  const previousPage = allLinks[linkIndex - 1]
+  const nextPage = allLinks[linkIndex + 1]
+  const section = navigation.find((section) =>
     section.links.find((link) => link.href === router.pathname)
   )
-  let currentSection = useTableOfContents(tableOfContents)
+  const currentSection = useTableOfContents(tableOfContents)
 
   return {
     allLinks,

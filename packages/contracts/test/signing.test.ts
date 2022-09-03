@@ -1,8 +1,7 @@
 import { recoverAddress, sign } from "@mintdrop/sdk"
-import { expect } from "chai"
 import { ethers } from "hardhat"
-
-import { deployContract } from "../../contracts/test/helpers"
+import * as assert from "node:assert/strict"
+import { deployContract } from "./helpers"
 
 describe("signatures", () => {
   beforeEach(async function () {
@@ -17,9 +16,9 @@ describe("signatures", () => {
   it("should recover via ethers", async function () {
     const message = this.owner.address
     const signature = await sign(this.owner, message)
-    const verified = await recoverAddress(message, signature)
+    const verified = recoverAddress(message, signature)
 
-    expect(verified).to.eq(this.owner.address)
+    assert.equal(verified, message)
   })
 
   it("should recover via contract", async function () {
@@ -30,6 +29,6 @@ describe("signatures", () => {
       .connect(this.addr1)
       .check(signature)
 
-    expect(contractRecover).to.eq(this.owner.address)
+    assert.equal(contractRecover, this.owner.address)
   })
 })

@@ -1,10 +1,11 @@
+import type { Contract } from "ethers"
 import Day from "dayjs"
 import { ethers } from "hardhat"
 
 export const deployContract = async function (
-  contractName,
-  constructorArgs: any[] = []
-) {
+  contractName: string,
+  constructorArgs?: unknown[]
+): Promise<Contract> {
   const factory = await ethers.getContractFactory(contractName)
   const contract = await factory.deploy(...(constructorArgs || []))
   await contract.deployed()
