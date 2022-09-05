@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.9
+
+### Patch Changes
+
+- Fixes useContract to be abi/address null-safe
+
 ## 0.3.8
 
 ### Patch Changes

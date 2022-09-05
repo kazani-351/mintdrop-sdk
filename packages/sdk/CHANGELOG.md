@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.3.9
+
+### Patch Changes
+
+- Fixes useContract to be abi/address null-safe
+- Updated dependencies
+  - @mintdrop/contracts@0.3.9
+
 ## 0.3.8
 
 ### Patch Changes
