@@ -6,6 +6,7 @@ import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 import "./extensions/Metadata.sol";
 import "./extensions/SignatureMintable.sol";
@@ -31,7 +32,8 @@ contract AccessPass is
   Pausable,
   Payouts,
   Metadata,
-  Version
+  Version,
+  ReentrancyGuard
 {
   uint256 public maxSupply; // 0 = no limit
   uint256 public maxPerWallet; // 0 = no limit
@@ -249,7 +251,7 @@ contract AccessPass is
   /**
    * @dev Withdraw and distribute contract funds
    */
-  function withdraw() external onlyOwner {
+  function withdraw() external onlyOwner nonReentrant {
     _withdraw();
   }
 
