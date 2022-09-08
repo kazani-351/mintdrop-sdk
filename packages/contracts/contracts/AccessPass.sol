@@ -2,14 +2,16 @@
 pragma solidity >=0.8.9;
 
 import "erc721a/contracts/ERC721A.sol";
-import "@openzeppelin/contracts/token/common/ERC2981.sol";
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
+
 import "./extensions/Metadata.sol";
 import "./extensions/SignatureMintable.sol";
 import "./extensions/Timing.sol";
+import "./extensions/Payouts.sol";
+import "./extensions/Royalties.sol";
 
 import "./gen/Version.sol";
 
@@ -23,10 +25,11 @@ error PublicMintDisabled();
 
 contract AccessPass is
   ERC721A,
-  ERC2981,
+  Royalties,
   SignatureMintable,
   Ownable,
   Pausable,
+  Payouts,
   Metadata,
   Version
 {
@@ -37,11 +40,11 @@ contract AccessPass is
 
   struct MintConfig {
     uint256 mintPrice; // 0 = free
-    uint64 startTime; // 0 = no time requirement
-    uint64 endTime; // 0 = no time requirement
+    uint64 startTime; // 0 = disabled
+    uint64 endTime; // 0 = no ending time
   }
 
-  struct AccessListInput {
+  struct AccessListConfig {
     address signer;
     uint256 mintPrice;
     uint64 startTime;
@@ -64,21 +67,22 @@ contract AccessPass is
     string memory symbol,
     string memory baseTokenURI,
     uint256 _maxSupply,
-    uint96 royalties,
+    PayoutsConfig memory payouts,
     address payable beneficiary,
+    uint96 bips,
     MintConfig memory _mintConfig,
-    AccessListInput[] memory accessLists
-  ) ERC721A(name, symbol) Metadata(baseTokenURI) {
+    AccessListConfig[] memory accessLists
+  )
+    ERC721A(name, symbol)
+    Metadata(baseTokenURI)
+    Payouts(payouts)
+    Royalties(beneficiary, bips)
+  {
     maxSupply = _maxSupply;
-
-    if (beneficiary != address(0)) {
-      ERC2981._setDefaultRoyalty(beneficiary, royalties);
-    }
-
     mintConfig = _mintConfig;
 
     for (uint256 i = 0; i < accessLists.length; i++) {
-      AccessListInput memory input = accessLists[i];
+      AccessListConfig memory input = accessLists[i];
       _addGroup(
         input.signer,
         input.mintPrice,
@@ -88,11 +92,57 @@ contract AccessPass is
     }
   }
 
+  function _canPublicMint(uint256 count) internal view returns (bool) {
+    // startTime = 0 means public disabled
+    if (mintConfig.startTime == 0) revert PublicMintDisabled();
+
+    // can't mint if it hasn't started
+    if (_isBeforeTimestamp(mintConfig.startTime)) {
+      revert MintNotStarted();
+    }
+
+    // if endTime set and now > endTime, can't mint
+    if (mintConfig.endTime != 0 && _isAfterTimestamp(mintConfig.endTime)) {
+      revert MintCompleted();
+    }
+
+    // if will be greater than maxSupply, can't mint
+    if (maxSupply != 0 && _totalMinted() + count > maxSupply) {
+      revert ExceedsMaxSupply();
+    }
+
+    // if will be greater than maxPerWallet, can't mint
+    if (maxPerWallet != 0 && _numberMinted(msg.sender) + count > maxPerWallet) {
+      revert ExceedsMaxPerWallet();
+    }
+
+    return true;
+  }
+
   /**
-   * @notice Changes the public mint config
+   * @notice Check if the msg.sender can mint count tokens
    */
-  function setMintConfig(MintConfig memory _config) external onlyOwner {
-    mintConfig = _config;
+  function canPublicMint(uint256 count) external view returns (bool) {
+    return _canPublicMint(count);
+  }
+
+  /**
+   * @dev Public minting without signature.
+   */
+  function publicMint(uint256 count)
+    external
+    payable
+    whenNotPaused
+    requireValidCount(count)
+    noContracts
+  {
+    if (msg.value < mintConfig.mintPrice * count) {
+      revert InsufficientPayment();
+    }
+
+    require(_canPublicMint(count));
+
+    _mint(msg.sender, count);
   }
 
   function _canGroupMint(bytes calldata signature, uint256 count)
@@ -153,59 +203,6 @@ contract AccessPass is
     _mint(msg.sender, count);
   }
 
-  function _canPublicMint(uint256 count) internal view returns (bool) {
-    // startTime = 0 means public disabled
-    if (mintConfig.startTime == 0) revert PublicMintDisabled();
-
-    // can't mint if it hasn't started
-    if (_isBeforeTimestamp(mintConfig.startTime)) {
-      revert MintNotStarted();
-    }
-
-    // if endTime set and now > endTime, can't mint
-    if (mintConfig.endTime != 0 && _isAfterTimestamp(mintConfig.endTime)) {
-      revert MintCompleted();
-    }
-
-    // if will be greater than maxSupply, can't mint
-    if (maxSupply != 0 && _totalMinted() + count > maxSupply) {
-      revert ExceedsMaxSupply();
-    }
-
-    // if will be greater than maxPerWallet, can't mint
-    if (maxPerWallet != 0 && _numberMinted(msg.sender) + count > maxPerWallet) {
-      revert ExceedsMaxPerWallet();
-    }
-
-    return true;
-  }
-
-  /**
-   * @notice Check if the msg.sender can mint count tokens
-   */
-  function canPublicMint(uint256 count) external view returns (bool) {
-    return _canPublicMint(count);
-  }
-
-  /**
-   * @dev Public minting without signature.
-   */
-  function publicMint(uint256 count)
-    external
-    payable
-    whenNotPaused
-    requireValidCount(count)
-    noContracts
-  {
-    if (msg.value < mintConfig.mintPrice * count) {
-      revert InsufficientPayment();
-    }
-
-    require(_canPublicMint(count));
-
-    _mint(msg.sender, count);
-  }
-
   /**
    * @dev Owner of contract can mint whatever they want.
    */
@@ -218,11 +215,21 @@ contract AccessPass is
   }
 
   /**
-   * @dev Include a mechanism to withdraw ether on the contract
+   * @dev Override ERC721A's initial token index.
+   *
+   * This might frustrate a lot of people, but the Mintdrop (opinionated) view is that this is a human convention not a machine convention.
+   * It's about perception of a set of tokens to humans, not an array index. If it were the latter it would 100000% start at 0.
+   * Humans have a hard time with things that start at 0. Even in Europe (and most of the world for that matter), floor 0 = base floor. 1st floor is still 1 in this case.
    */
-  function withdraw() external onlyOwner {
-    uint256 balance = address(this).balance;
-    Address.sendValue(payable(msg.sender), balance);
+  function _startTokenId() internal pure override returns (uint256) {
+    return 1;
+  }
+
+  /**
+   * @notice Changes the public mint config
+   */
+  function setMintConfig(MintConfig memory _config) external onlyOwner {
+    mintConfig = _config;
   }
 
   /**
@@ -240,14 +247,10 @@ contract AccessPass is
   }
 
   /**
-   * @dev Override ERC721A's initial token index.
-   *
-   * This might frustrate a lot of people, but the Mintdrop (opinionated) view is that this is a human convention not a machine convention.
-   * It's about perception of a set of tokens to humans, not an array index. If it were the latter it would 100000% start at 0.
-   * Humans have a hard time with things that start at 0. Even in Europe (and most of the world for that matter), floor 0 = base floor. 1st floor is still 1 in this case.
+   * @dev Withdraw and distribute contract funds
    */
-  function _startTokenId() internal pure override returns (uint256) {
-    return 1;
+  function withdraw() external onlyOwner {
+    _withdraw();
   }
 
   /**

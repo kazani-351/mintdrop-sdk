@@ -34,8 +34,8 @@ export function getDeployData(contract: Contract): string {
     contract.symbol,
     contract.baseTokenURI,
     contract.maxSupply || 0, // default no max
-    contract.royalties || 0, // default 0 royalties
     contract.beneficiary || "0x0000000000000000000000000000000000000000",
+    contract.royalties || 0, // default 0 royalties
     [
       ethToWei(contract.mintPrice) || 0, // default 0 mint price
       contract.startTime || 0, // default not public mintable

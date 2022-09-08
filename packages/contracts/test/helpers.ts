@@ -46,6 +46,7 @@ export const deployAccessPass = async function deploy(
     name,
     symbol,
     maxSupply,
+    [[], []],
     [mintPrice, startTime, endTime],
     groups
   ])

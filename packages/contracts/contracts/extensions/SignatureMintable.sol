@@ -9,7 +9,7 @@ import "./Timing.sol";
 error InvalidSignature();
 
 abstract contract SignatureMintable is Timing {
-  struct SigningGroupConfig {
+  struct SigningGroup {
     uint256 mintPrice;
     uint64 startTime;
     uint256 maxPerWallet;
@@ -17,7 +17,7 @@ abstract contract SignatureMintable is Timing {
     uint256 mintCount;
   }
 
-  mapping(address => SigningGroupConfig) public groups;
+  mapping(address => SigningGroup) public groups;
   mapping(bytes => uint256) internal usedSignatures;
 
   function _isGroupPaymentCorrect(address signer, uint256 count)
@@ -25,7 +25,7 @@ abstract contract SignatureMintable is Timing {
     view
     returns (bool)
   {
-    SigningGroupConfig memory group = groups[signer];
+    SigningGroup memory group = groups[signer];
     if (group.mintPrice != 0 && msg.value < group.mintPrice * count)
       return false;
     return true;
@@ -36,13 +36,13 @@ abstract contract SignatureMintable is Timing {
     view
     returns (bool)
   {
-    SigningGroupConfig memory group = groups[signer];
+    SigningGroup memory group = groups[signer];
     if (group.maxPerWallet != 0 && count > group.maxPerWallet) return false;
     return true;
   }
 
   function _isGroupStarted(address signer) internal view returns (bool) {
-    SigningGroupConfig memory group = groups[signer];
+    SigningGroup memory group = groups[signer];
     if (group.startTime != 0 && _isBeforeTimestamp(group.startTime)) {
       return false;
     }

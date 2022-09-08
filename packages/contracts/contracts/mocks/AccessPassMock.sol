@@ -10,16 +10,18 @@ contract AccessPassMock is AccessPass {
     string memory name,
     string memory symbol,
     uint256 _maxSupply,
+    PayoutsConfig memory payoutConfig,
     MintConfig memory mintConfig,
-    AccessListInput[] memory accessListConfig
+    AccessListConfig[] memory accessListConfig
   )
     AccessPass(
       name,
       symbol,
       "https://mintdrop.example/",
       _maxSupply,
-      0,
+      payoutConfig,
       payable(address(0)),
+      0,
       mintConfig,
       accessListConfig
     )
