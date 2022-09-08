@@ -12,16 +12,20 @@
   "version": "0.3.9",
   "type": "module",
   "main": "./dist/sdk.cjs",
-  "module": "./dist/sdk.cjs",
+  "module": "./dist/sdk.js",
   "types": "./dist/sdk.d.ts",
   "exports": {
-    "import": "./dist/sdk.esm.js",
+    "import": "./dist/sdk.js",
     "require": "./dist/sdk.cjs"
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "tsup --clean && tsc --emitDeclarationOnly",
-    "dev": "nodemon"
+    "build": "vite build",
+    "postbuild": "tsc --emitDeclarationOnly",
+    "test:dev": "vitest",
+    "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
+    "test:coverage": "CI=true vitest --coverage",
+    "test": "pnpm test:coverage && pnpm test:report"
   },
   "files": [
     "dist",
@@ -35,12 +39,17 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.18",
+    "@vitejs/plugin-react": "^2.0.1",
+    "@vitest/coverage-c8": "^0.23.0",
+    "c8": "^7.12.0",
     "ethers": "^5.6.8",
-    "nodemon": "^2.0.16",
+    "jsdom": "^20.0.0",
     "react": ">=17",
     "react-dom": ">=17",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4",
+    "vite": "^3.0.9",
+    "vitest": "^0.23.0",
     "wagmi": "0.5.x || 0.6.x"
   },
   "peerDependencies": {
