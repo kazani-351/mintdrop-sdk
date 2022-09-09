@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.3.11
+
+### Patch Changes
+
+- Bugfix for contract not getting reinitialized
+- Updated dependencies
+  - @mintdrop/contracts@0.3.11
+
 ## 0.3.10
 
 ### Patch Changes

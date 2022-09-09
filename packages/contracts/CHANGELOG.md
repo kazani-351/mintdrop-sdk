@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.11
+
+### Patch Changes
+
+- Bugfix for contract not getting reinitialized
+
 ## 0.3.10
 
 ### Patch Changes
