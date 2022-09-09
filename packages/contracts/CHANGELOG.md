@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.13
+
+### Patch Changes
+
+- Enable sourcemaps for vite build
+
 ## 0.3.12
 
 ### Patch Changes
