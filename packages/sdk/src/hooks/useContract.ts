@@ -18,7 +18,7 @@ export function useContract(
         new ethers.Contract(drop.address, drop.abi, provider || signer)
       )
     }
-  }, [])
+  }, [drop])
 
   return contract
 }
