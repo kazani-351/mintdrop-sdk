@@ -34,7 +34,7 @@ export function useMinting(opts = DEFAULTS) {
   const canMint = canGroupMint || canPublicMint
 
   useEffect(() => {
-    contract.mintConfig().then((config) => {
+    contract?.mintConfig().then((config) => {
       setConfig({
         mintPrice: weiToEth(config.mintPrice),
         startTime: config.startTime.toNumber(),
@@ -45,7 +45,7 @@ export function useMinting(opts = DEFAULTS) {
 
   useEffect(() => {
     contract
-      .canPublicMint(1)
+      ?.canPublicMint(1)
       .then(setCanPublicMint)
       .catch(() => setCanPublicMint(false)) // this function throws at the contract with reason
   }, [block, contract])
