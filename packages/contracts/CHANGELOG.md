@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.10
+
+### Patch Changes
+
+- Hotfix useContract null error, rebuild with vite + no esm
+
 ## 0.3.9
 
 ### Patch Changes

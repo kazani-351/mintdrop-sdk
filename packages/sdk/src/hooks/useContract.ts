@@ -7,14 +7,16 @@ import { useDrop } from "./useDrop"
 export function useContract(
   provider?: Signer | providers.Provider
 ): Contract | null {
-  const { address, abi } = useDrop()
+  const drop = useDrop()
   const { data: signer } = useSigner()
   const [contract, setContract] = useState<ethers.Contract>()
   useEffect(() => {
-    if (!address || !abi) {
+    if (!drop) {
       setContract(null)
     } else {
-      setContract(new ethers.Contract(address, abi, provider || signer))
+      setContract(
+        new ethers.Contract(drop.address, drop.abi, provider || signer)
+      )
     }
   }, [])
 
