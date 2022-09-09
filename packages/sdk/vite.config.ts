@@ -13,6 +13,7 @@ export default defineConfig({
     environment: "jsdom"
   },
   build: {
+    sourcemap: true,
     lib: {
       entry: resolve(__dirname, "src/sdk.ts"),
       fileName: (format) => `sdk.${format === "cjs" ? "cjs" : "js"}`,
