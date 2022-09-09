@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.12
+
+### Patch Changes
+
+- Fix conditional drop id
+
 ## 0.3.11
 
 ### Patch Changes

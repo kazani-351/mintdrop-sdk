@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.3.12
+
+### Patch Changes
+
+- Fix conditional drop id
+- Updated dependencies
+  - @mintdrop/contracts@0.3.12
+
 ## 0.3.11
 
 ### Patch Changes
