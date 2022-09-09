@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.3.15
+
+### Patch Changes
+
+- Fix last of null check issues
+- Updated dependencies
+  - @mintdrop/contracts@0.3.15
+
 ## 0.3.14
 
 ### Patch Changes
