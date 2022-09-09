@@ -33,7 +33,7 @@ export function useSignature(): UseSignature {
         setSigner(undefined)
       }
     })
-  }, [drop.id, address])
+  }, [drop?.id, address])
 
   useEffect(() => {
     if (!sig) {
