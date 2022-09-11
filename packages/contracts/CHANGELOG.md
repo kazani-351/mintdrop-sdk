@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.3.16
+
+### Patch Changes
+
+- re-init the contract anytime provider, signer, or drop changes
+
 ## 0.3.15
 
 ### Patch Changes

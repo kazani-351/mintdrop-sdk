@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.3.16
+
+### Patch Changes
+
+- re-init the contract anytime provider, signer, or drop changes
+- Updated dependencies
+  - @mintdrop/contracts@0.3.16
+
 ## 0.3.15
 
 ### Patch Changes
