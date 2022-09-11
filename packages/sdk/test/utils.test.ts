@@ -13,7 +13,7 @@ describe("basisPoints", () => {
       expect(bipsToPercent("string")).toBe(null)
     })
     it("converts bips to percent", () => {
-      expect(bipsToPercent(100_00)).toBe(100)
+      expect(bipsToPercent(10_000)).toBe(100)
     })
   })
 })
