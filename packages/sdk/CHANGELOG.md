@@ -1,5 +1,53 @@
 # @mintdrop/sdk
 
+## 0.3.16
+
+### Patch Changes
+
+- re-init the contract anytime provider, signer, or drop changes
+- Updated dependencies
+  - @mintdrop/contracts@0.3.16
+
+## 0.3.15
+
+### Patch Changes
+
+- Fix last of null check issues
+- Updated dependencies
+  - @mintdrop/contracts@0.3.15
+
+## 0.3.14
+
+### Patch Changes
+
+- Fix yet another small bug
+- Updated dependencies
+  - @mintdrop/contracts@0.3.14
+
+## 0.3.13
+
+### Patch Changes
+
+- Enable sourcemaps for vite build
+- Updated dependencies
+  - @mintdrop/contracts@0.3.13
+
+## 0.3.12
+
+### Patch Changes
+
+- Fix conditional drop id
+- Updated dependencies
+  - @mintdrop/contracts@0.3.12
+
+## 0.3.11
+
+### Patch Changes
+
+- Bugfix for contract not getting reinitialized
+- Updated dependencies
+  - @mintdrop/contracts@0.3.11
+
 ## 0.3.10
 
 ### Patch Changes

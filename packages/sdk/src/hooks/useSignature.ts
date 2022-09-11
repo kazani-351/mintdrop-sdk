@@ -22,7 +22,7 @@ export function useSignature(): UseSignature {
   const [valid, setValid] = useState<boolean>()
 
   useEffect(() => {
-    if (!drop.id || !address) return
+    if (!drop?.id || !address) return
     getSignature(drop.id, address).then((res) => {
       if (res) {
         const { sig, signer } = res
@@ -33,7 +33,7 @@ export function useSignature(): UseSignature {
         setSigner(undefined)
       }
     })
-  }, [drop.id, address])
+  }, [drop?.id, address])
 
   useEffect(() => {
     if (!sig) {
