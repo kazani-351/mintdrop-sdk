@@ -2,7 +2,6 @@ import Day from "dayjs"
 import { it, expect, describe } from "vitest"
 import { getDeployData } from "../src/deployer"
 import { formatArgs } from "../src/deployer/deploy"
-import { ethToWei, weiToEth } from "../src/utils"
 
 describe("deployer", () => {
   describe("getDeployData", () => {
