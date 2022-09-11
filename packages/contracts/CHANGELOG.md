@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.4.0
+
+### Minor Changes
+
+- 0.4 - Upgrades to deployer, adds payment splitting + withdrawls
+
 ## 0.3.16
 
 ### Patch Changes

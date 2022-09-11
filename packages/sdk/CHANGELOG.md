@@ -1,5 +1,16 @@
 # @mintdrop/sdk
 
+## 0.4.0
+
+### Minor Changes
+
+- 0.4 - Upgrades to deployer, adds payment splitting + withdrawls
+
+### Patch Changes
+
+- Updated dependencies
+  - @mintdrop/contracts@0.4.0
+
 ## 0.3.16
 
 ### Patch Changes
