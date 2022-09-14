@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.4.3
+
+### Patch Changes
+
+- by default we need to useProvider for non-authenticated scenarios
+
 ## 0.4.2
 
 ### Patch Changes
