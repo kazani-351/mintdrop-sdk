@@ -26,7 +26,7 @@ export function useGroup(): ContractSigner | null {
 
   // if there's a sig, grab details from the contract
   useEffect(() => {
-    if (!contract || !signature) {
+    if (!contract || !signature?.signer) {
       reset()
       return
     }
