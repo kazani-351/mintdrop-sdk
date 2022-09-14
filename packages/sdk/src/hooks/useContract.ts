@@ -1,17 +1,19 @@
 import { Contract, ethers, providers, Signer } from "ethers"
 import { useEffect, useState } from "react"
-import { useSigner } from "wagmi"
+import { useProvider, useSigner } from "wagmi"
 
 import { useDrop } from "./useDrop"
 
 export function useContract(
-  provider?: Signer | providers.Provider
+  overrideProvider?: Signer | providers.Provider
 ): Contract | null {
   const drop = useDrop()
+  const provider = useProvider()
   const { data: signer } = useSigner()
   const [contract, setContract] = useState<ethers.Contract>()
+
   useEffect(() => {
-    const providerOrSigner = provider || signer
+    const providerOrSigner = overrideProvider || signer || provider
 
     if (!drop || !providerOrSigner) {
       if (drop) {
