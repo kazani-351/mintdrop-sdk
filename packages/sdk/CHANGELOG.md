@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.4.2
+
+### Patch Changes
+
+- bugfix useContract to not set contract when no provider or signer
+- Updated dependencies
+  - @mintdrop/contracts@0.4.2
+
 ## 0.4.1
 
 ### Patch Changes
