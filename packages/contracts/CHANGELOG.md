@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.4.1
+
+### Patch Changes
+
+- Bug fix for non-existent signature
+
 ## 0.4.0
 
 ### Minor Changes

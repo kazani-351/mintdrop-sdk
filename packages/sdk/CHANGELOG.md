@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.4.1
+
+### Patch Changes
+
+- Bug fix for non-existent signature
+- Updated dependencies
+  - @mintdrop/contracts@0.4.1
+
 ## 0.4.0
 
 ### Minor Changes
