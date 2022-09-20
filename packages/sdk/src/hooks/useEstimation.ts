@@ -14,7 +14,7 @@ type Estimate = {
 }
 
 export function useEstimation(dataOrFn: DataOrFn, chainId?: number) {
-  const provider = useProvider()
+  const provider = useProvider({ chainId })
   const block = useBlockBeat()
   const [estimate, setEstimate] = useState<Estimate>({
     gas: null,
