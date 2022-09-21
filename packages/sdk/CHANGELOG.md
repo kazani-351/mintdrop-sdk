@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.4.4
+
+### Patch Changes
+
+- useProvider needs to take a chainId
+- Updated dependencies
+  - @mintdrop/contracts@0.4.4
+
 ## 0.4.3
 
 ### Patch Changes

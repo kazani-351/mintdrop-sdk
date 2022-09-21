@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.4.4
+
+### Patch Changes
+
+- useProvider needs to take a chainId
+
 ## 0.4.3
 
 ### Patch Changes
