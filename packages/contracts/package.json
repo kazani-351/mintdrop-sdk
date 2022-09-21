@@ -1,6 +1,6 @@
 {
   "name": "@mintdrop/contracts",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "The Mintdrop suite of contracts and utils.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
