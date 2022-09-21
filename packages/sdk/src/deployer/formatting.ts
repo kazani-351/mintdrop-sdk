@@ -26,7 +26,7 @@ export function formatPayouts(payouts: Payouts) {
     )
   }
 
-  if (sum(formatted[1]) !== 100) {
+  if (sum(formatted[1]) !== 10000) {
     throw new Error("Shares do not add up to 100 percent")
   }
 

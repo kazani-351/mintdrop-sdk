@@ -26,7 +26,7 @@ abstract contract Payouts {
     for (uint256 i; i < withdrawAddresses.length; i++) {
       _withdrawTo(
         withdrawAddresses[i],
-        (balance * withdrawPercentages[i]) / 100
+        (balance * withdrawPercentages[i]) / 10000
       );
     }
   }

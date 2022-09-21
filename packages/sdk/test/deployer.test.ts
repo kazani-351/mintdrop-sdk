@@ -11,7 +11,7 @@ describe("deployer", () => {
         symbol: "TEST",
         baseTokenURI: "https://meta.mintdrop.com/1234/",
         payouts: {
-          "0x0000000000000000000000000000000000000000": 100
+          "0x0000000000000000000000000000000000000000": 10000
         }
       })
 
@@ -26,7 +26,7 @@ describe("deployer", () => {
         symbol: "TEST",
         baseTokenURI: "https://meta.mintdrop.com/1234/",
         payouts: {
-          "0x0000000000000000000000000000000000000000": 100
+          "0x0000000000000000000000000000000000000000": 10000
         }
       })
 
@@ -47,7 +47,7 @@ describe("deployer", () => {
       expect(baseTokenURI).to.eq("https://meta.mintdrop.com/1234/")
       expect(maxSupply).to.eq(0)
       expect(addresses).toEqual(["0x0000000000000000000000000000000000000000"])
-      expect(shares).toEqual([100])
+      expect(shares).toEqual([10000])
       expect(beneficiary).to.eq("0x0000000000000000000000000000000000000000")
       expect(bips).to.eq(0)
       expect(mintPrice).to.eq(0)
@@ -63,8 +63,8 @@ describe("deployer", () => {
           symbol: "TEST",
           baseTokenURI: "https://meta.mintdrop.com/1234/",
           payouts: {
-            "0x1234567890123456789012345678901234567890": 95,
-            "0xc0ffeec0ffeec0ffeec0ffeec0ffeec0ffee1234": 5
+            "0x1234567890123456789012345678901234567890": 9500,
+            "0xc0ffeec0ffeec0ffeec0ffeec0ffeec0ffee1234": 500
           }
         })
 
@@ -75,7 +75,7 @@ describe("deployer", () => {
           "0xc0ffeec0ffeec0ffeec0ffeec0ffeec0ffee1234"
         ])
 
-        expect(shares).toEqual([95, 5])
+        expect(shares).toEqual([9500, 500])
       })
 
       it("should throw if the shares dont add up to 100", function () {
@@ -85,8 +85,8 @@ describe("deployer", () => {
             symbol: "TEST",
             baseTokenURI: "https://meta.mintdrop.com/1234/",
             payouts: {
-              "0x1234567890123456789012345678901234567890": 100,
-              "0xc0ffeec0ffeec0ffeec0ffeec0ffeec0ffee1234": 1
+              "0x1234567890123456789012345678901234567890": 10000,
+              "0xc0ffeec0ffeec0ffeec0ffeec0ffeec0ffee1234": 100
             }
           })
 
@@ -102,7 +102,7 @@ describe("deployer", () => {
             symbol: "TEST",
             baseTokenURI: "https://meta.mintdrop.com/1234/",
             payouts: {
-              "0x0000000000000000000000000000000000000000": 100
+              "0x0000000000000000000000000000000000000000": 10000
             },
             mintPrice: 1.1234
           })
@@ -120,7 +120,7 @@ describe("deployer", () => {
             symbol: "TEST",
             baseTokenURI: "https://meta.mintdrop.com/1234/",
             payouts: {
-              "0x0000000000000000000000000000000000000000": 100
+              "0x0000000000000000000000000000000000000000": 10000
             }
           })
 
@@ -135,7 +135,7 @@ describe("deployer", () => {
             symbol: "TEST",
             baseTokenURI: "https://meta.mintdrop.com/1234/",
             payouts: {
-              "0x0000000000000000000000000000000000000000": 100
+              "0x0000000000000000000000000000000000000000": 10000
             },
             startTime: time.unix()
           })
@@ -154,7 +154,7 @@ describe("deployer", () => {
             symbol: "TEST",
             baseTokenURI: "https://meta.mintdrop.com/1234/",
             payouts: {
-              "0x0000000000000000000000000000000000000000": 100
+              "0x0000000000000000000000000000000000000000": 10000
             }
           })
 
@@ -169,7 +169,7 @@ describe("deployer", () => {
             symbol: "TEST",
             baseTokenURI: "https://meta.mintdrop.com/1234/",
             payouts: {
-              "0x0000000000000000000000000000000000000000": 100
+              "0x0000000000000000000000000000000000000000": 10000
             },
             endTime: time.unix()
           })
