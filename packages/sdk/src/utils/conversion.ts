@@ -5,6 +5,6 @@ export function weiToEth(wei: BigNumberish) {
 }
 
 export function ethToWei(eth: number) {
-  if (!eth) return null
+  if (typeof eth === "undefined") return null
   return ethers.utils.parseUnits(eth.toString(), "ether")
 }
