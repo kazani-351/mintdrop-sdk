@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.4.6
+
+### Patch Changes
+
+- Fix 0 !== undefined check, allow 0 mint price"
+
 ## 0.4.5
 
 ### Patch Changes

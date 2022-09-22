@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.4.6
+
+### Patch Changes
+
+- Fix 0 !== undefined check, allow 0 mint price"
+- Updated dependencies
+  - @mintdrop/contracts@0.4.6
+
 ## 0.4.5
 
 ### Patch Changes
