@@ -21,7 +21,7 @@ export function getDeployData(contract: Contract): string {
   }
 }
 
-export function formatArgs(contract) {
+export function formatArgs(contract: Contract) {
   return [
     contract.name,
     contract.symbol,

@@ -1,16 +1,24 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /// <reference types="vitest" />
 
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import { resolve } from "path"
 import { dependencies, peerDependencies } from "./package.json"
+import * as dotenv from "@tinyhttp/dotenv"
+
+dotenv.config()
 
 export default defineConfig({
   plugins: [react()],
   test: {
     deps: { fallbackCJS: true },
     globals: true,
-    environment: "jsdom"
+    environment: "jsdom",
+    env: {
+      VANITY_ADDRESS: process.env.VANITY_ADDRESS!,
+      VANITY_PK: process.env.VANITY_PK!
+    }
   },
   build: {
     sourcemap: true,

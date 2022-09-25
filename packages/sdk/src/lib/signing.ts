@@ -9,6 +9,11 @@
 
 import { Signer, utils } from "ethers"
 
+/**
+ * Pack the address and generate and nonce together and hash them
+ * @param payload address
+ * @returns hash
+ */
 export function hash(payload: string) {
   const message = utils.solidityPack(["address"], [payload])
   const hash = utils.solidityKeccak256(["bytes"], [message])

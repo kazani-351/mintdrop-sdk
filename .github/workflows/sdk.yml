@@ -32,6 +32,10 @@ jobs:
 
       - name: Test
         run: pnpm --dir packages/sdk test
+        env:
+          VANITY_PK: ${{ secrets.VANITY_PK }}
 
       - name: Collect coverage
         run: bash <(curl -s https://codecov.io/bash) -f ./packages/sdk/coverage.lcov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

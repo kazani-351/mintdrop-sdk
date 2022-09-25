@@ -1,4 +1,5 @@
 import Day from "dayjs"
+import { BigNumber } from "ethers"
 import { it, expect, describe } from "vitest"
 import { getDeployData } from "../src/deployer"
 import { formatArgs } from "../src/deployer/deploy"
@@ -35,12 +36,15 @@ describe("deployer", () => {
         symbol,
         baseTokenURI,
         maxSupply,
-        [addresses, shares],
+        a,
         beneficiary,
         bips,
-        [mintPrice, startTime, endTime],
+        auctionData,
         accessLists
       ] = args
+
+      const [addresses, shares] = a as string[]
+      const [mintPrice, startTime, endTime] = auctionData as number[]
 
       expect(name).to.eq("Test Contract")
       expect(symbol).to.eq("TEST")
@@ -68,7 +72,7 @@ describe("deployer", () => {
           }
         })
 
-        const [addresses, shares] = args[4]
+        const [addresses, shares] = args[4] as [string, string]
 
         expect(addresses).toEqual([
           "0x1234567890123456789012345678901234567890",
@@ -107,7 +111,7 @@ describe("deployer", () => {
             mintPrice: 1.1234
           })
 
-          const [mintPrice] = args[7]
+          const [mintPrice] = args[7] as [BigNumber]
 
           expect(mintPrice.toString()).toEqual("1123400000000000000")
         })
@@ -124,7 +128,7 @@ describe("deployer", () => {
             }
           })
 
-          const [_, startTime] = args[7]
+          const [_, startTime] = args[7] as [void, number]
           expect(startTime).toEqual(0)
         })
 
@@ -140,7 +144,7 @@ describe("deployer", () => {
             startTime: time.unix()
           })
 
-          const [_, startTime] = args[7]
+          const [_, startTime] = args[7] as [void, number]
 
           expect(startTime).not.to.equal(0)
           expect(startTime).to.equal(time.unix())
@@ -158,7 +162,7 @@ describe("deployer", () => {
             }
           })
 
-          const [_, _2, endTime] = args[7]
+          const [_, _2, endTime] = args[7] as [void, void, number]
           expect(endTime).toEqual(0)
         })
 
@@ -174,7 +178,7 @@ describe("deployer", () => {
             endTime: time.unix()
           })
 
-          const [_, _2, endTime] = args[7]
+          const [_, _2, endTime] = args[7] as [void, void, number]
 
           expect(endTime).not.to.equal(0)
           expect(endTime).to.equal(time.unix())

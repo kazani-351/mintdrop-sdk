@@ -1,12 +1,14 @@
-export function etherscanAddressURL(address, chainId = 1) {
+type ChainId = 1 | 3 | 4 | 5 | 137 | 80001
+
+export function etherscanAddressURL(address: string, chainId: ChainId = 1) {
   return etherscanHost(chainId) + "/address/" + address
 }
 
-export function etherscanTxURL(hash, chainId = 1) {
+export function etherscanTxURL(hash: string, chainId: ChainId = 1) {
   return etherscanHost(chainId) + "/tx/" + hash
 }
 
-export function etherscanHost(chainId = 1) {
+export function etherscanHost(chainId: ChainId = 1) {
   switch (chainId) {
     case 1:
       return `https://etherscan.io`
