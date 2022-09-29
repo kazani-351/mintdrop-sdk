@@ -5,10 +5,10 @@ import Counts from "../components/Counts"
 import MintButton from "../components/MintButton"
 
 const Home: NextPage = () => {
-  const { isMinting, isSuccess, publicMint, groupMint } = useMinting()
+  const { isMinting, isSuccess, publicMint, signatureMint } = useMinting()
 
   const handleGroupMint = () => {
-    groupMint(1).catch(console.error)
+    signatureMint(1).catch(console.error)
   }
 
   const handlePublicMint = () => {

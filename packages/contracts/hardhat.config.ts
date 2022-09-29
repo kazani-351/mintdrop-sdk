@@ -5,19 +5,19 @@ import "hardhat-gas-reporter"
 import "solidity-coverage"
 
 import * as dotenv from "dotenv"
-import { HardhatUserConfig, task } from "hardhat/config"
+import { HardhatUserConfig } from "hardhat/config"
 
 dotenv.config()
 
-// This is a sample Hardhat task. To learn how to create your own go to
-// https://hardhat.org/guides/create-task.html
-task("accounts", "Prints the list of accounts", async (_, hre) => {
-  const accounts = await hre.ethers.getSigners()
+// // This is a sample Hardhat task. To learn how to create your own go to
+// // https://hardhat.org/guides/create-task.html
+// task("accounts", "Prints the list of accounts", async (_, hre) => {
+//   const accounts = await hre.ethers.getSigners()
 
-  for (const account of accounts) {
-    console.log(account.address)
-  }
-})
+//   for (const account of accounts) {
+//     console.log(account.address)
+//   }
+// })
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -31,6 +31,13 @@ const config: HardhatUserConfig = {
         runs: 1000
       }
     }
+  },
+
+  paths: {
+    sources: "./src",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts"
   },
 
   typechain: {

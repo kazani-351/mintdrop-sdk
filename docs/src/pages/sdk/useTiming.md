@@ -15,7 +15,7 @@ import { useTiming } from "@mintdrop/sdk"
 import { useBlockBeat } from "@mintdrop/sdk"
 
 const Countdown = () => {
-  const [when] = useState(moment().add(1, "day"))
+  const [when] = useState(Day().add(1, "day"))
   const timing = useTiming(when)
 
   return (
@@ -37,7 +37,7 @@ const Countdown = () => {
 
 ```json
 {
-  now: Moment
+  now: Date
   diff: (unitOfTime.Diff = "minute") => string
   complete: boolean
 }

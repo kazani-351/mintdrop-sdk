@@ -30,8 +30,8 @@ export function useMinting(opts = DEFAULTS) {
   const [isMinting, setMinting] = useState(false)
   const [isSuccess, setSuccess] = useState(false)
 
-  const canGroupMint = !!signature?.valid
-  const canMint = canGroupMint || canPublicMint
+  const canSignatureMint = !!signature?.valid
+  const canMint = canSignatureMint || canPublicMint
 
   useEffect(() => {
     contract?.mintConfig().then((config) => {
@@ -50,15 +50,16 @@ export function useMinting(opts = DEFAULTS) {
       .catch(() => setCanPublicMint(false)) // this function throws at the contract with reason
   }, [block, contract])
 
-  const groupMint = useCallback(
+  const signatureMint = useCallback(
     (count: number) => {
       setMinting(true)
 
       const value = ethToWei(group.mintPrice * count)
-      return contract
-        .groupMint(signature.sig, count, {
-          value
-        })
+      // Support the old groupMint function for now
+      const func = contract.signatureMint || contract.groupMint
+      return func(signature.sig, count, {
+        value
+      })
         .then((res) => res.wait())
         .then((receipt) => {
           console.log("RECEIPT", receipt)
@@ -101,11 +102,11 @@ export function useMinting(opts = DEFAULTS) {
   return {
     isMinting,
     isSuccess,
-    canGroupMint,
+    canSignatureMint,
     canPublicMint,
     canMint,
     config,
-    groupMint,
+    signatureMint,
     publicMint
   }
 }

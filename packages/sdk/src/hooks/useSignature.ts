@@ -39,8 +39,9 @@ export function useSignature(): UseSignature {
     if (!sig) {
       setValid(undefined)
     } else {
-      contract
-        .canGroupMint(sig, 1)
+      // Support old naming
+      const func = contract.canSignatureMint || contract.canGroupMint
+      func(sig, 1)
         .then(setValid)
         .catch(() => setValid(false)) // this function throws at the contract with reason
     }

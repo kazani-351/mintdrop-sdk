@@ -149,7 +149,7 @@
 
 ### Patch Changes
 
-- Adding canGroupMint, canPublicMint functions. Fixing usePrices hook
+- Adding canSignatureMint, canPublicMint functions. Fixing usePrices hook
 
 ## 0.2.4
 

@@ -33,6 +33,7 @@ jobs:
       - name: Test
         run: pnpm --dir packages/sdk test
         env:
+          VANITY_ADDRESS: ${{ secrets.VANITY_ADDRESS }}
           VANITY_PK: ${{ secrets.VANITY_PK }}
 
       - name: Collect coverage

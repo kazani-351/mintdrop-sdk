@@ -11,7 +11,7 @@ import { useSignature } from "@mintdrop/sdk"
 
 ## Note
 
-In most cases you should be using [useMinting](/docs/sdk/useMinting) since it will handle all signature-based minting for you through the `groupMint` function.
+In most cases you should be using [useMinting](/docs/sdk/useMinting) since it will handle all signature-based minting for you through the `signatureMint` function.
 
 ## Usage
 

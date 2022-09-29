@@ -19,8 +19,8 @@ const Example = () => {
     isMinting,
     isSuccess,
     canPublicMint,
-    canGroupMint,
-    groupMint,
+    canSignatureMint,
+    signatureMint,
     publicMint
   } = useMinting()
 
@@ -29,7 +29,7 @@ const Example = () => {
   }
 
   const handleGroupMint = ({ count }) => {
-    groupMint(count).catch(errorHandler)
+    signatureMint(count).catch(errorHandler)
   }
 
   const handlePublicMint = ({ count }) => {
@@ -38,7 +38,7 @@ const Example = () => {
 
   return (
     <div>
-      <button onClick={handleGroupMint} disabled={!canGroupMint}>
+      <button onClick={handleGroupMint} disabled={!canSignatureMint}>
         Group Mint
       </button>
       <button onClick={handlePublicMint} disabled={!canPublicMint}>
@@ -55,7 +55,7 @@ const Example = () => {
 {
   isMinting: boolean,
   isSuccess: boolean,   // this will stay true for 3s after minting
-  canGroupMint: boolean,
+  canSignatureMint: boolean,
   canPublicMint: boolean,
   canMint: boolean,
   config: {
@@ -63,7 +63,7 @@ const Example = () => {
     startTime: number   // public start time in ETH seconds
     endTime: number     // public end time in ETH seconds
   },
-  groupMint: (signature: string, count: number) => TransactionReceipt,
+  signatureMint: (signature: string, count: number) => TransactionReceipt,
   publicMint: (count: number) => TransactionReceipt
 }
 ```

@@ -20,38 +20,63 @@ export type DeployAccessPassGroup = [
 ]
 
 export type DeployAccessPassProps = {
+  contractName?: string
   name?: string
   symbol?: string
   maxSupply?: number
   mintPrice?: string
   startTime?: number
+  maxPerWallet?: number
   endTime?: number
   groups?: DeployAccessPassGroup[]
+  payouts?: {
+    addresses: string[]
+    shares: number[]
+  }
+  royalties?: {
+    beneficiary: string
+    bips: number
+  }
 }
 
-export const deployAccessPass = async function deploy(
+export const deployMintdrop = async function deploy(
   props: DeployAccessPassProps = {}
 ) {
   const {
-    name = "AccessPassMock",
-    symbol = "ACCESS_PASS_MOCK",
+    contractName = "MintdropMock",
+    name = "MintdropMock",
+    symbol = "MINTDROP_MOCK",
     maxSupply = 10000,
     mintPrice = 0,
-    startTime = Day().unix(), // starts now
+    startTime = Day().subtract(1, "hour").unix(), // starts now
     endTime = 0,
-    groups = []
+    maxPerWallet = 0,
+    groups = [],
+    payouts = {
+      addresses: ["0x0000000000000000000000000000000000000000"],
+      shares: [10000]
+    },
+    royalties = {
+      beneficiary: "0x0000000000000000000000000000000000000000",
+      bips: 0
+    }
   } = props
 
-  return deployContract("AccessPassMock", [
+  const args = [
     name,
     symbol,
+    "https://mintdrop.example/",
     maxSupply,
-    [[], []],
-    [mintPrice, startTime, endTime],
-    groups
-  ])
+    endTime,
+    [mintPrice, startTime, maxPerWallet],
+    groups,
+    [payouts.addresses, payouts.shares],
+    [royalties.beneficiary, royalties.bips]
+  ]
+
+  return deployContract(contractName, args)
 }
 
-const defaults = { deployContract, deployAccessPass }
+const defaults = { deployContract, deployMintdrop }
 
 export default defaults

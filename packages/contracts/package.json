@@ -1,13 +1,14 @@
 {
   "name": "@mintdrop/contracts",
   "version": "0.4.6",
-  "description": "The Mintdrop suite of contracts and utils.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "Mintdrop Smart Contracts",
+  "files": [
+    "/contracts/**/*.sol"
+  ],
   "scripts": {
     "clean": "hardhat clean && rm -rf artifacts cache build dist",
-    "generate": "npx hardhat run scripts/version.ts",
-    "build": "hardhat compile && tsc dist/index.ts",
+    "build": "npx hardhat run scripts/version.ts && hardhat compile",
+    "build:watch": "nodemon --exec pnpm build",
     "dev": "nodemon --exec pnpm build",
     "coverage": "hardhat coverage",
     "test": "hardhat test",
@@ -50,7 +51,6 @@
     "ethereum-waffle": "^3.4.4",
     "hardhat": "^2.10.2",
     "hardhat-gas-reporter": "^1.0.8",
-    "moment": "^2.29.4",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "1.0.0-beta.24",

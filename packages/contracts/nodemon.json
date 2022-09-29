@@ -1,4 +1,5 @@
 {
-  "watch": ["contracts/**/*", "test/**/*"],
+  "watch": ["src/**/*", "test/**/*"],
+  "ignore": ["src/gen/*"],
   "ext": "js,json,sol,ts"
 }
