@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "description": "Mintdrop Smart Contracts",
   "files": [
-    "/contracts/**/*.sol"
+    "/src/**/*.sol"
   ],
   "scripts": {
     "clean": "hardhat clean && rm -rf artifacts cache build dist",
