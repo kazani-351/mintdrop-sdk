@@ -3,6 +3,6 @@ pragma solidity >=0.8.9;
 
 abstract contract Versioned {
   function __mintdrop() external pure returns (string memory) {
-    return "0.4.6";
+    return "0.5.0";
   }
 }

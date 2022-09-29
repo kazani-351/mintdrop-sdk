@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.5.0
+
+### Minor Changes
+
+- Contracts refactor - Modular system around extensions (access lists, public minting, payouts, royalties)
+
 ## 0.4.6
 
 ### Patch Changes
