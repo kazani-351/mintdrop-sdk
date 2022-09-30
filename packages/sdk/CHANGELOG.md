@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.5.4
+
+### Patch Changes
+
+- Switch etherscan helpers to number, will throw error instead
+- Updated dependencies
+  - @mintdrop/contracts@0.5.4
+
 ## 0.5.3
 
 ### Patch Changes
