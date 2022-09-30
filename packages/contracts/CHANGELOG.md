@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.5.2
+
+### Patch Changes
+
+- remove hardhat/console.sol
+
 ## 0.5.1
 
 ### Patch Changes
