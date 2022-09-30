@@ -1,5 +1,11 @@
 # @mintdrop/contracts
 
+## 0.5.1
+
+### Patch Changes
+
+- Patch for missing files from package
+
 ## 0.5.0
 
 ### Minor Changes

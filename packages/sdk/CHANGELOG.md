@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.5.1
+
+### Patch Changes
+
+- Patch for missing files from package
+- Updated dependencies
+  - @mintdrop/contracts@0.5.1
+
 ## 0.5.0
 
 ### Minor Changes
