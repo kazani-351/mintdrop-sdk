@@ -2,7 +2,6 @@
 pragma solidity >=0.8.9;
 
 import "erc721a/contracts/ERC721A.sol";
-import "hardhat/console.sol";
 
 import "../extensions/Payouts.sol";
 
