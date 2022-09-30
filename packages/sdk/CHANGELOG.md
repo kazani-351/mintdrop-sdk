@@ -1,5 +1,13 @@
 # @mintdrop/sdk
 
+## 0.5.3
+
+### Patch Changes
+
+- Conditional checks on startTime and endTime
+- Updated dependencies
+  - @mintdrop/contracts@0.5.3
+
 ## 0.5.2
 
 ### Patch Changes

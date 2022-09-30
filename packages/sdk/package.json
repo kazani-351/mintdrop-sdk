@@ -9,7 +9,7 @@
     "react"
   ],
   "author": "ianh.eth",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "type": "module",
   "main": "./dist/sdk.cjs",
   "module": "./dist/sdk.js",
