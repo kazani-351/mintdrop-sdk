@@ -1,14 +1,12 @@
-type ChainId = 1 | 3 | 4 | 5 | 137 | 80001
-
-export function etherscanAddressURL(address: string, chainId: ChainId = 1) {
+export function etherscanAddressURL(address: string, chainId = 1) {
   return etherscanHost(chainId) + "/address/" + address
 }
 
-export function etherscanTxURL(hash: string, chainId: ChainId = 1) {
+export function etherscanTxURL(hash: string, chainId = 1) {
   return etherscanHost(chainId) + "/tx/" + hash
 }
 
-export function etherscanHost(chainId: ChainId = 1) {
+export function etherscanHost(chainId = 1) {
   switch (chainId) {
     case 1:
       return `https://etherscan.io`
@@ -22,5 +20,7 @@ export function etherscanHost(chainId: ChainId = 1) {
       return `https://polygonscan.com`
     case 80001:
       return `https://mumbai.polygonscan.com`
+    default:
+      throw new Error("Etherscan: Unknown chain id " + chainId)
   }
 }
