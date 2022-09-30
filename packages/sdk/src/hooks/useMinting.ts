@@ -37,8 +37,8 @@ export function useMinting(opts = DEFAULTS) {
     contract?.mintConfig().then((config) => {
       setConfig({
         mintPrice: weiToEth(config.mintPrice),
-        startTime: config.startTime.toNumber(),
-        endTime: config.endTime.toNumber()
+        startTime: config.startTime?.toNumber(),
+        endTime: config.endTime?.toNumber()
       })
     })
   }, [contract])
