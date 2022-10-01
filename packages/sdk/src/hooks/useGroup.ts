@@ -32,7 +32,7 @@ export function useGroup(): ContractSigner | null {
     }
 
     contract
-      .groups(signature.signer)
+      .accessLists(signature.signer)
       .then((access) => {
         if (!access.exists) {
           reset()
