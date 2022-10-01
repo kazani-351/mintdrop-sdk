@@ -1,5 +1,21 @@
 # @mintdrop/sdk
 
+## 0.5.6
+
+### Patch Changes
+
+- Support both accessLists() and groups()
+- Updated dependencies
+  - @mintdrop/contracts@0.5.6
+
+## 0.5.5
+
+### Patch Changes
+
+- Support both accessLists() and groups()
+- Updated dependencies
+  - @mintdrop/contracts@0.5.5
+
 ## 0.5.4
 
 ### Patch Changes

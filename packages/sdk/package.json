@@ -9,7 +9,7 @@
     "react"
   ],
   "author": "ianh.eth",
-  "version": "0.5.4",
+  "version": "0.5.6",
   "type": "module",
   "main": "./dist/sdk.cjs",
   "module": "./dist/sdk.js",
@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@mintdrop/contracts": "workspace:*",
+    "@mintdrop/contracts": "*",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.5"
   },

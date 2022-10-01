@@ -1,5 +1,17 @@
 # @mintdrop/contracts
 
+## 0.5.6
+
+### Patch Changes
+
+- Support both accessLists() and groups()
+
+## 0.5.5
+
+### Patch Changes
+
+- Support both accessLists() and groups()
+
 ## 0.5.4
 
 ### Patch Changes
