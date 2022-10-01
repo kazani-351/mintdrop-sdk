@@ -31,8 +31,10 @@ export function useGroup(): ContractSigner | null {
       return
     }
 
-    contract
-      .accessLists(signature.signer)
+    // Support old method signature
+    const func = contract.accessLists || contract.groups
+
+    func(signature.signer)
       .then((access) => {
         if (!access.exists) {
           reset()
