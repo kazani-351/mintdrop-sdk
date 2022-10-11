@@ -2,17 +2,17 @@
 
 The official SDK for working with MintDrop contracts and drops.
 
+See the official [Mintdrop Documentation](https://mintdrop.com/docs) for more guides and full documentation.
+
+Mindrop SDK requires wagmi + ethers. Follow the quickstart instructions on [Wagmi](https://wagmi.sh) for more info on setting up a project from scratch, or check out our [examples](./examples) directory.
+
 ## Quickstart
 
-Install @mintdrop/sdk and its ethers + wagmi peer dependencies.
+Install `@mintdrop/sdk` and its ethers + wagmi peer dependencies.
 
 ```sh
 npm i @mintdrop/sdk wagmi ethers
 ```
-
-Note - Mindrop SDK currently requires wagmi + ethers.
-
-Follow the instructions on [Wagmi](https://wagmi.sh) for more info.
 
 For React/Next.js projects, add MintdropProvider to your main App instance:
 
@@ -53,5 +53,3 @@ export default HomePage = () => {
   )
 }
 ```
-
-See the [Official Documentation](https://mintdrop.com/docs) for more guides and information.
