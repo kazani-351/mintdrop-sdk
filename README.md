@@ -14,16 +14,12 @@ Note - Mindrop SDK currently requires wagmi + ethers.
 
 Follow the instructions on [Wagmi](https://wagmi.sh) for more info.
 
-## React/Next.js
-
-MintDrop works great with React + Next.js projects.
-
-Add MintdropProvider to your main App instance:
+For React/Next.js projects, add MintdropProvider to your main App instance:
 
 ```tsx
 import { MintdropProvider } from "@mintdrop/sdk"
 
-const DROP_ID = "... your drop ID"
+const DROP_ID = "... your drop ID from dashboard"
 
 const App = ({ Component, pageProps }) => {
   return (
