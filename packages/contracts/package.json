@@ -5,6 +5,8 @@
   "files": [
     "/src/**/*.sol"
   ],
+  "types": "./dist/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
     "clean": "hardhat clean && rm -rf artifacts cache build dist",
     "build": "npx hardhat run scripts/version.ts && hardhat compile",

@@ -12,10 +12,15 @@ import { useTiming } from "@mintdrop/sdk"
 ## Usage
 
 ```ts
+import dayjs from "dayjs"
 import { useBlockBeat } from "@mintdrop/sdk"
 
+// next day
+const when = dayjs()
+  .add(dayjs.duration({ days: 1 }))
+  .toDate()
+
 const Countdown = () => {
-  const [when] = useState(Day().add(1, "day"))
   const timing = useTiming(when)
 
   return (
@@ -37,8 +42,8 @@ const Countdown = () => {
 
 ```json
 {
-  now: Date
-  diff: (unitOfTime.Diff = "minute") => string
+  now: Dayjs
+  diff: Duration
   complete: boolean
 }
 ```

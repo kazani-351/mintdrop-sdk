@@ -1,16 +1,17 @@
-import { Signer, utils, Wallet } from "ethers"
+import { ethers, Signer, utils, Wallet } from "ethers"
 import { useCallback, useEffect, useState } from "react"
 import { useProvider } from "wagmi"
-
+import type { Provider } from "@wagmi/core"
 import { useBlockBeat } from "./useBlockBeat"
+import type { BytesLike, Deferrable } from "ethers/lib/utils"
 
-type DataOrFn = string | ((Signer) => string)
+type DataOrFn = BytesLike | ((signer: Signer) => BytesLike)
 
 type Estimate = {
-  gas
-  gasPrice
-  wei
-  eth
+  gas: number
+  gasPrice: number
+  wei: number
+  eth: number
 }
 
 export function useEstimation(dataOrFn: DataOrFn, chainId?: number) {
@@ -32,7 +33,7 @@ export function useEstimation(dataOrFn: DataOrFn, chainId?: number) {
 
   useEffect(() => {
     const { address: from } = Wallet.createRandom()
-    let data = buildData(provider)
+    const data = buildData(provider)
     getEstimate(provider, {
       data,
       from
@@ -46,7 +47,10 @@ export function useEstimation(dataOrFn: DataOrFn, chainId?: number) {
   return estimate
 }
 
-async function getEstimate(provider, tx) {
+async function getEstimate(
+  provider: Provider,
+  tx: Deferrable<ethers.providers.TransactionRequest>
+) {
   const gas = await provider
     .estimateGas(tx)
     .then((res) => res.toString())

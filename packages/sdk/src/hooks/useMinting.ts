@@ -1,14 +1,10 @@
+import { BigNumber } from "ethers"
 import { useCallback, useEffect, useState } from "react"
-
 import { ethToWei, weiToEth } from "../utils"
 import { useBlockBeat } from "./useBlockBeat"
 import { useContract } from "./useContract"
 import { useGroup } from "./useGroup"
 import { useSignature } from "./useSignature"
-
-const DEFAULTS = {
-  timeout: 3000
-}
 
 type PublicConfig = {
   mintPrice: number
@@ -16,9 +12,7 @@ type PublicConfig = {
   endTime: number
 }
 
-export function useMinting(opts = DEFAULTS) {
-  const { timeout } = opts
-
+export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
   const block = useBlockBeat()
   const contract = useContract()
   const signature = useSignature()
@@ -34,13 +28,21 @@ export function useMinting(opts = DEFAULTS) {
   const canMint = canSignatureMint || canPublicMint
 
   useEffect(() => {
-    contract?.mintConfig().then((config) => {
-      setConfig({
-        mintPrice: weiToEth(config.mintPrice),
-        startTime: config.startTime?.toNumber(),
-        endTime: config.endTime?.toNumber()
-      })
-    })
+    contract
+      ?.mintConfig()
+      .then(
+        (config: {
+          mintPrice: BigNumber
+          startTime: BigNumber
+          endTime: BigNumber
+        }) => {
+          setConfig({
+            mintPrice: weiToEth(config.mintPrice),
+            startTime: config.startTime.toNumber(),
+            endTime: config.endTime.toNumber()
+          })
+        }
+      )
   }, [contract])
 
   useEffect(() => {

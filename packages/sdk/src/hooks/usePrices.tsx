@@ -14,7 +14,6 @@ type Prices = {
 }
 
 type UsePrices = {
-  loading: boolean
   currency: string
   prices: Prices
 }
@@ -29,8 +28,8 @@ type CoinbaseResponse = {
 }
 
 export function usePrices(opts: Opts = {}): UsePrices {
-  const currency = "USD"
-  const [loading, setLoading] = useState(false)
+  const currency = opts.currency || "USD"
+
   const [prices, setPrices] = useState<Prices>()
   const ms = opts.ms || 60 * 1000
 
@@ -47,7 +46,6 @@ export function usePrices(opts: Opts = {}): UsePrices {
   }, [query, ms])
 
   return {
-    loading,
     currency,
     prices
   }
@@ -67,8 +65,6 @@ async function getCoinbasePrices(currency: string) {
       ])
     )
     .then(Object.fromEntries)
-
-  const { ETH, MATIC } = prices
 
   return prices
 }

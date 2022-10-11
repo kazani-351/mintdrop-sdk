@@ -10,7 +10,7 @@ export function useContract(
   const drop = useDrop()
   const provider = useProvider()
   const { data: signer } = useSigner()
-  const [contract, setContract] = useState<ethers.Contract>()
+  const [contract, setContract] = useState<ethers.Contract | null>(null)
 
   useEffect(() => {
     const providerOrSigner = overrideProvider || signer || provider

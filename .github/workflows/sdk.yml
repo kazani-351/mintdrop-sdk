@@ -30,13 +30,28 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          profile: minimal
+          override: true
+      - name: Install Anvil
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+      - name: Launch Anvil
+        run: anvil --fork-url=https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161 &
+
       - name: Test
         run: pnpm --dir packages/sdk test
         env:
           VANITY_ADDRESS: ${{ secrets.VANITY_ADDRESS }}
           VANITY_PK: ${{ secrets.VANITY_PK }}
 
-      - name: Collect coverage
-        run: bash <(curl -s https://codecov.io/bash) -f ./packages/sdk/coverage.lcov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/sdk/coverage.lcov

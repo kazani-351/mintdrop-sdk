@@ -13,7 +13,8 @@
     "moduleResolution": "Node",
     "sourceMap": true,
     // "emitDeclarationOnly": true,
-    "lib": ["ES2017", "dom"]
+    "lib": ["ES2017", "dom"],
+    "types": ["vi-fetch/matchers"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

@@ -1,18 +1,25 @@
-import { createContext, useEffect, useState } from "react"
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState
+} from "react"
 
 import { getDrop, init } from "../api"
 import { Drop } from "../types"
 
 export const Context = createContext(undefined)
 
-type Props = {
-  children: any
+type Props = PropsWithChildren<{
   drop: string
   host?: string
-}
+}>
 
-export default function MintdropProvider(props: Props) {
-  const { children, drop: dropId, host } = props
+export default function MintdropProvider({
+  children,
+  drop: dropId,
+  host
+}: Props) {
   const [drop, setDrop] = useState<Drop>()
 
   useEffect(() => {
@@ -29,7 +36,7 @@ export default function MintdropProvider(props: Props) {
   return <Context.Provider value={drop}>{children}</Context.Provider>
 }
 
-export function mintdropHOC(Comp, props) {
+export function mintdropHOC(Comp: any, props: Props) {
   const mintdropHOCRender = () => (
     <MintdropProvider {...props}>
       <Comp />

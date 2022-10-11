@@ -16,8 +16,8 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     env: {
-      VANITY_ADDRESS: process.env.VANITY_ADDRESS!,
-      VANITY_PK: process.env.VANITY_PK!
+      VANITY_PK: process.env.VANITY_PK!,
+      VANITY_ADDRESS: process.env.VANITY_ADDRESS!
     }
   },
   build: {

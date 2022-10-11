@@ -6,9 +6,11 @@ import { useEffect, useState } from "react"
 Day.extend(duration)
 Day.extend(isSameOrAfter)
 
-export function useTiming(time: Date, opts = { interval: 1000 }) {
+export function useTiming(
+  time: Date,
+  { interval = 1000 } = { interval: 1000 }
+) {
   const [now, setNow] = useState<Day.Dayjs>(Day())
-  const { interval = 1000 } = opts
 
   const complete = now.isSameOrAfter(time)
 

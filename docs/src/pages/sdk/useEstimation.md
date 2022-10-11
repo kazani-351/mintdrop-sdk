@@ -12,7 +12,7 @@ import { useEstimation } from "@mintdrop/sdk"
 ## Usage
 
 ```ts
-import { useEstmation } from "@mintdrop/sdk"
+import { useEstimation } from "@mintdrop/sdk"
 
 const Example = () => {
   const deployData = getDeployData({

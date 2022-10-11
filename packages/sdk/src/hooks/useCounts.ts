@@ -8,14 +8,14 @@ export const useCounts = () => {
   const contract = useContract()
   const block = useBlockBeat()
 
-  const [maxSupply, setMaxSupply] = useState<number>(0)
-  const [totalSupply, setTotalSupply] = useState<number>(0)
+  const [maxSupply, setMaxSupply] = useState(0)
+  const [totalSupply, setTotalSupply] = useState(0)
 
   useEffect(() => {
     contract
       ?.maxSupply()
       .then((res: BigNumber) => res.toNumber())
-      .then((supply) => {
+      .then((supply: number) => {
         if (supply === 0) setMaxSupply(Number.POSITIVE_INFINITY)
         else setMaxSupply(supply)
       })
