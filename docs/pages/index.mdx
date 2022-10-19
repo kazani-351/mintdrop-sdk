@@ -1,0 +1,36 @@
+---
+title: Getting started
+pageTitle: Mintdrop - Documentation
+description: Mintdrop's smart contracts, SDK, widget, and API documentation.
+---
+
+## Installation
+
+Install @mintdrop/sdk:
+
+```shell
+npm i @mintdrop/sdk
+```
+
+Note - Mindrop SDK currently requires wagmi + ethers.
+
+Follow the instructions on [Wagmi](https://wagmi.sh/docs/getting-started#quick-start) for more info.
+
+## Next.js
+
+```tsx
+import "@mintdrop/sdk/style.css"
+import { MintdropProvider } from "@mintdrop/sdk"
+
+const DROP_ID = "... your drop ID"
+
+const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+  return (
+    <MintdropProvider drop={DROP_ID}>
+      <Component {...pageProps} />
+    </MintdropProvider>
+  )
+}
+
+export default App
+```

@@ -12,7 +12,7 @@
     "emitDeclarationOnly": true,
     "moduleResolution": "Node",
     "sourceMap": true,
-    // "emitDeclarationOnly": true,
+    "strict": false,
     "lib": ["ES2017", "dom"],
     "types": ["vi-fetch/matchers"]
   },

@@ -1,0 +1,49 @@
+---
+title: useCounts
+description: Hook to get mint counts and remaining from a Mintdrop contract.
+---
+
+# useCounts
+
+Hook to get mint counts and remaining from a Mintdrop contract.
+
+```tsx
+import { useCounts } from "@mintdrop/sdk"
+```
+
+## Usage
+
+```tsx
+import { useCounts } from "@mintdrop/sdk"
+
+const Counts = () => {
+  const counts = useCounts()
+
+  const val = `
+  {
+    "maxSupply": ${counts.maxSupply},
+    "totalSupply": ${counts.totalSupply},
+    "remaining": ${counts.remaining}
+  }
+  `
+
+  return (
+    <div>
+      <pre>{val}</pre>
+    </div>
+  )
+}
+```
+
+import UseCounts from "../../examples/UseCounts"
+
+<UseCounts />
+
+## Returns
+
+```json
+{
+  mintCount: number,
+  remaining: number
+}
+```

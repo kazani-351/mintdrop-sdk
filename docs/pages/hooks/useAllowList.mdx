@@ -1,0 +1,49 @@
+---
+title: useAllowList
+description: Hook to provide mint group info.
+---
+
+# useAllowList
+
+Hook to provide allow list for wallet.
+
+```tsx
+import { useAllowList } from "@mintdrop/sdk"
+```
+
+## Usage
+
+```tsx
+import Day from "dayjs"
+import { useAllowList } from "@mintdrop/sdk"
+
+const Example = () => {
+  const group = useAllowList()
+
+  const time = group?.startTime
+    ? Day.unix(group.startTime).format("LLLL")
+    : "NOW"
+  const price = group?.mintPrice && weiToEth(group.mintPrice)
+
+  return (
+    <div>
+      <p>
+        Group starts minting at {time} for {price}&Xi;
+      </p>
+      <p>Current Group mint count = {group?.mintCount}</p>
+    </div>
+  )
+}
+```
+
+## Returns
+
+```json
+{
+  exists: boolean,
+  mintCount: number,
+  mintPrice: number,    // in wei
+  startTime: number,    // ETH seconds, 0 = anytime
+  maxPerWallet: number  // 0 = infinite
+}
+```

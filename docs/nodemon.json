@@ -1,0 +1,6 @@
+{
+  "watch": ["**/*.tsx", "../packages/**/dist"],
+  "ignore": ["**/*.test.ts"],
+  "ext": "js,ts,tsx,.css",
+  "exec": "pnpm build"
+}

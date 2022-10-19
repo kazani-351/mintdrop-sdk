@@ -1,3 +1,4 @@
+import fetch from "cross-fetch"
 import { useCallback, useEffect, useState } from "react"
 
 type Exchange = "COINBASE"

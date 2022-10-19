@@ -5,7 +5,6 @@ export type Drop = {
 
   title: string
   description: string
-  slug: string
   maxSupply: number
 
   banner: string
@@ -14,16 +13,13 @@ export type Drop = {
   address: string
   chainId: number
   abi: ContractInterface
-  groups: Group[]
 
-  startTime: number
-  endTime: number
-}
+  groups: (Omit<AllowList, "exists"> & { name: string })[]
 
-export type Group = {
-  name: string
   mintPrice: number
   startTime: number
+  endTime: number
+  maxPerWallet: number
 }
 
 export type Signature = {
@@ -32,10 +28,10 @@ export type Signature = {
   // msg: string // I think we're going to have to store the msg
 }
 
-export type ContractSigner = {
+export type AllowList = {
   exists: boolean
-  maxPerWallet: number
   mintCount: number
   mintPrice: number
   startTime: number
+  maxPerWallet: number
 }

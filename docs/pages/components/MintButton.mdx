@@ -1,0 +1,45 @@
+---
+title: MintButton
+description: Add a minting button to any website.
+---
+
+import Example from "../../components/Example"
+import MintButton from "../../examples/MintButton"
+
+# \<MintButton /\>
+
+Add a minting button to any website.
+
+```tsx
+import { MintButton } from "@mintdrop/sdk"
+
+export default function MyComponent() {
+  return <MintButton />
+}
+```
+
+<Example>
+  <MintButton />
+</Example>
+
+## Customizing
+
+Apply a theme color with the `color` param:
+
+```tsx
+<MintButton textColor="#FFF" color="#1D50FA" />
+```
+
+<Example>
+  <MintButton textColor="#FFF" color="#1D50FA" />
+</Example>
+
+Change the button text:
+
+```tsx
+<MintButton text="Get your Membership Pass" />
+```
+
+<Example>
+  <MintButton text="Get your Membership Pass" />
+</Example>

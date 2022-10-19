@@ -1,8 +1,7 @@
 import { ethers, Signer, utils, Wallet } from "ethers"
 import { useCallback, useEffect, useState } from "react"
-import { useProvider } from "wagmi"
+import { useBlockNumber, useProvider } from "wagmi"
 import type { Provider } from "@wagmi/core"
-import { useBlockBeat } from "./useBlockBeat"
 import type { BytesLike, Deferrable } from "ethers/lib/utils"
 
 type DataOrFn = BytesLike | ((signer: Signer) => BytesLike)
@@ -16,7 +15,7 @@ type Estimate = {
 
 export function useEstimation(dataOrFn: DataOrFn, chainId?: number) {
   const provider = useProvider({ chainId })
-  const block = useBlockBeat()
+  const block = useBlockNumber()
   const [estimate, setEstimate] = useState<Estimate>({
     gas: null,
     gasPrice: null,

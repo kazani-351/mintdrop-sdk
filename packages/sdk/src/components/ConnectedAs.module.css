@@ -1,0 +1,4 @@
+.ConnectedAs {
+  color: red;
+  @apply text-sm text-center flex space-x-3 items-center justify-center text-gray-500;
+}

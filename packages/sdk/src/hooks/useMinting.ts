@@ -1,9 +1,9 @@
-import { BigNumber } from "ethers"
 import { useCallback, useEffect, useState } from "react"
+import { useAccount, useBlockNumber, useSigner } from "wagmi"
 import { ethToWei, weiToEth } from "../utils"
-import { useBlockBeat } from "./useBlockBeat"
+import { useAllowList } from "./useAllowList"
 import { useContract } from "./useContract"
-import { useGroup } from "./useGroup"
+import { useDrop } from "./useDrop"
 import { useSignature } from "./useSignature"
 
 type PublicConfig = {
@@ -13,10 +13,13 @@ type PublicConfig = {
 }
 
 export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
-  const block = useBlockBeat()
+  const block = useBlockNumber()
   const contract = useContract()
+  const { address } = useAccount()
+  const drop = useDrop()
+  const { data: signer } = useSigner({ chainId: drop?.chainId })
   const signature = useSignature()
-  const group = useGroup()
+  const group = useAllowList()
 
   const [config, setConfig] = useState<PublicConfig>()
   const [canPublicMint, setCanPublicMint] = useState(false)
@@ -29,61 +32,34 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
 
   useEffect(() => {
     contract
-      ?.mintConfig()
-      .then(
-        (config: {
-          mintPrice: BigNumber
-          startTime: BigNumber
-          endTime: BigNumber
-        }) => {
-          setConfig({
-            mintPrice: weiToEth(config.mintPrice),
-            startTime: config.startTime.toNumber(),
-            endTime: config.endTime.toNumber()
-          })
-        }
-      )
+      ?.publicMinting()
+      .then((config) => {
+        setConfig({
+          mintPrice: weiToEth(config.mintPrice),
+          startTime: config.startTime?.toNumber(),
+          endTime: config.endTime?.toNumber()
+        })
+      })
+      .catch(console.error)
   }, [contract])
 
   useEffect(() => {
     contract
-      ?.canPublicMint(1)
+      ?.canPublicMint(address, 1)
       .then(setCanPublicMint)
       .catch(() => setCanPublicMint(false)) // this function throws at the contract with reason
   }, [block, contract])
 
-  const signatureMint = useCallback(
-    (count: number) => {
-      setMinting(true)
-
-      const value = ethToWei(group.mintPrice * count)
-      // Support the old groupMint function for now
-      const func = contract.signatureMint || contract.groupMint
-      return func(signature.sig, count, {
-        value
-      })
-        .then((res) => res.wait())
-        .then((receipt) => {
-          console.log("RECEIPT", receipt)
-          setSuccess(true)
-          setTimeout(() => {
-            setSuccess(false)
-          }, timeout)
-
-          return receipt
-        })
-        .finally(() => setMinting(false))
-    },
-    [contract, group, signature, timeout]
-  )
-
   const publicMint = useCallback(
     (count: number) => {
+      console.log("publicMint", { signer })
+
       setMinting(true)
       const value = ethToWei(config.mintPrice * count)
 
       return contract
-        .publicMint(count, {
+        .connect(signer)
+        .publicMint(address, count, {
           value
         })
         .then((res) => res.wait())
@@ -99,6 +75,36 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
         .finally(() => setMinting(false))
     },
     [contract, config, timeout]
+  )
+
+  const signatureMint = useCallback(
+    (count: number) => {
+      console.log("signatureMint", { signer })
+
+      setMinting(true)
+      const value = ethToWei(group.mintPrice * count)
+
+      // Support the old groupMint function for now
+      const func =
+        contract.connect(signer).signatureMint ||
+        contract.connect(signer).groupMint
+
+      return func(address, signature.sig, count, {
+        value
+      })
+        .then((res) => res.wait())
+        .then((receipt) => {
+          console.log("RECEIPT", receipt)
+          setSuccess(true)
+          setTimeout(() => {
+            setSuccess(false)
+          }, timeout)
+
+          return receipt
+        })
+        .finally(() => setMinting(false))
+    },
+    [contract, group, signature, timeout]
   )
 
   return {

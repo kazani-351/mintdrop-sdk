@@ -6,50 +6,43 @@ import "../utils/Math.sol";
 error WithdrawFailed();
 
 abstract contract Payouts is Math {
-  address[] public withdrawAddresses;
-  uint96[] public withdrawShares;
+    address[] private withdrawAddresses;
+    uint96[] private withdrawShares;
 
-  struct PayoutsConfig {
-    address[] payees;
-    uint96[] shares;
-  }
+    modifier hasCorrectSum(uint96[] memory _shares) {
+        uint256 i;
+        uint96 sum = 0;
 
-  modifier hasCorrectSum(uint96[] memory _shares) {
-    uint256 i;
-    uint96 sum = 0;
+        for (i = 0; i < _shares.length; i++) sum = sum + _shares[i];
 
-    for (i = 0; i < _shares.length; i++) sum = sum + _shares[i];
+        require(sum == 10000, "Payouts: Shares do not add up to 10000");
 
-    require(sum == 10000, "Payouts: Shares do not add up to 10000");
-
-    _;
-  }
-
-  constructor(PayoutsConfig memory _config) {
-    _setPayouts(_config);
-  }
-
-  function _setPayouts(PayoutsConfig memory _config)
-    internal
-    hasCorrectSum(_config.shares)
-  {
-    withdrawAddresses = _config.payees;
-    withdrawShares = _config.shares;
-  }
-
-  /**
-   * @dev Withdraw balance and distribute to all share holders.
-   */
-  function _withdraw() internal {
-    uint256 balance = address(this).balance;
-
-    for (uint256 i; i < withdrawAddresses.length; i++) {
-      _withdrawTo(withdrawAddresses[i], (balance * withdrawShares[i]) / 10000);
+        _;
     }
-  }
 
-  function _withdrawTo(address _address, uint256 _amount) private {
-    (bool success, ) = _address.call{value: _amount}("");
-    if (!success) revert WithdrawFailed();
-  }
+    constructor(address[] memory _payees, uint96[] memory _shares)
+        hasCorrectSum(_shares)
+    {
+        withdrawAddresses = _payees;
+        withdrawShares = _shares;
+    }
+
+    /**
+     * @dev Withdraw balance and distribute to all share holders.
+     */
+    function _withdraw() internal {
+        uint256 balance = address(this).balance;
+
+        for (uint256 i; i < withdrawAddresses.length; i++) {
+            _withdrawTo(
+                withdrawAddresses[i],
+                (balance * withdrawShares[i]) / 10000
+            );
+        }
+    }
+
+    function _withdrawTo(address _address, uint256 _amount) private {
+        (bool success, ) = _address.call{value: _amount}("");
+        if (!success) revert WithdrawFailed();
+    }
 }

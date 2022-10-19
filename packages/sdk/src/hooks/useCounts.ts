@@ -1,19 +1,18 @@
 import { BigNumber } from "ethers"
 import { useEffect, useState } from "react"
-
-import { useBlockBeat } from "./useBlockBeat"
+import { useBlockNumber } from "wagmi"
 import { useContract } from "./useContract"
 
 export const useCounts = () => {
+  const block = useBlockNumber()
   const contract = useContract()
-  const block = useBlockBeat()
 
-  const [maxSupply, setMaxSupply] = useState(0)
+  const [maxSupply, setMaxSupply] = useState(Number.POSITIVE_INFINITY)
   const [totalSupply, setTotalSupply] = useState(0)
 
   useEffect(() => {
     contract
-      ?.maxSupply()
+      ?.maxSupply?.()
       .then((res: BigNumber) => res.toNumber())
       .then((supply: number) => {
         if (supply === 0) setMaxSupply(Number.POSITIVE_INFINITY)
@@ -26,7 +25,9 @@ export const useCounts = () => {
     contract
       ?.totalSupply()
       .then((res: BigNumber) => res.toNumber())
-      .then(setTotalSupply)
+      .then((num) => {
+        setTotalSupply(num)
+      })
       .catch(console.error)
   }, [contract, block])
 

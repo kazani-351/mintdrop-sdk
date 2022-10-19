@@ -1,0 +1,33 @@
+---
+title: useTokenGating
+description: Hook to provide token-gating for components.
+---
+
+# useTokenGating
+
+Hook to provide token-gating for components.
+
+```tsx
+import { useTokenGating } from "@mintdrop/sdk"
+```
+
+## Usage
+
+```tsx
+function UseTokenGating() {
+  const { address } = useAccount()
+  const { allow } = useTokenGating(address)
+
+  return (
+    <SafeHydrate>
+      Current Wallet: {address}
+      <br />
+      Allow Access: {JSON.stringify(allow)}
+    </SafeHydrate>
+  )
+}
+```
+
+import UseTokenGating from "../../examples/UseTokenGating"
+
+<UseTokenGating />

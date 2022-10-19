@@ -1,0 +1,35 @@
+---
+title: MintWidget
+description: Add a minting widget to any website.
+---
+
+import Example from "../../components/Example"
+import MintWidget from "../../examples/MintWidget"
+
+# \<MintWidget /\>
+
+Add a minting widget to any website.
+
+```tsx
+import { MintWidget } from "@mintdrop/sdk"
+
+export default function MyComponent() {
+  return <MintWidget />
+}
+```
+
+<Example>
+  <MintWidget />
+</Example>
+
+## Theming
+
+Apply a theme color with the `color` param:
+
+```tsx
+<MintWidget color="#403C72" />
+```
+
+<Example>
+  <MintWidget color="#403C72" />
+</Example>

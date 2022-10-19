@@ -30,8 +30,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
       - name: Build
-        run: pnpm build
+        run: pnpm --dir packages/contracts build
 
       - name: Test
         run: pnpm --dir packages/contracts test
@@ -65,8 +70,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
       - name: Build
-        run: pnpm build
+        run: pnpm --dir packages/contracts build
 
       - name: Coverage
         run: pnpm --dir packages/contracts test

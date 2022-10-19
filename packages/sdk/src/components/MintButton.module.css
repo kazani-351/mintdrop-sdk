@@ -1,0 +1,7 @@
+.MintButton {
+  @apply px-6 py-3 text-sm font-bold uppercase rounded-full hover:opacity-80;
+}
+
+.disabled {
+  @apply opacity-50;
+}

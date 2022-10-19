@@ -1,0 +1,5 @@
+{
+  "MintButton": "<MintButton />",
+  "MintWidget": "<MintWidget />",
+  "TokenGate": "<TokenGate />"
+}

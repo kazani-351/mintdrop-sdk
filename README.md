@@ -1,12 +1,36 @@
-# Mintdrop SDK
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./docs/public/mintdrop-white.svg">
+    <img alt="wagmi logo" src="./docs/public/mintdrop-black.svg" width="auto" height="60">
+  </picture>
+</p>
 
-The official SDK for working with MintDrop contracts and drops.
+<p align="center">
+  <!-- No-code NFT Membership + Subscription Platform -->
+  The official SDK for working with MintDrop contracts and drops.
+<p>
+
+<div align="center">
+  <a href="https://www.npmjs.com/package/@mintdrop/sdk">
+    <img src="https://img.shields.io/npm/v/@mintdrop/sdk?colorA=21262d&colorB=161b22&style=flat" alt="Version">
+  </a>
+  <a href="https://www.npmjs.com/package/@mintdrop/sdk">
+    <img src="https://img.shields.io/npm/dm/@mintdrop/sdk?colorA=21262d&colorB=161b22&style=flat" alt="Downloads per month">
+  </a>
+  <a href="https://getfoundry.sh/">
+    <img src="https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg" alt="Foundry Badge">
+  </a>
+</div>
+
+<br>
+
+## Documentation
 
 See the official [Mintdrop Documentation](https://mintdrop.com/docs) for more guides and full documentation.
 
-Mindrop SDK requires wagmi + ethers. Follow the quickstart instructions on [Wagmi](https://wagmi.sh) for more info on setting up a project from scratch, or check out our [examples](./examples) directory.
-
 ## Quickstart
+
+Mindrop SDK requires wagmi + ethers. Follow the quickstart instructions on [Wagmi](https://wagmi.sh) for more info on setting up a project from scratch, or check out our [examples](./examples) directory.
 
 Install `@mintdrop/sdk` and its ethers + wagmi peer dependencies.
 

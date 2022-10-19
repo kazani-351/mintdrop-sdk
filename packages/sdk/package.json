@@ -1,5 +1,7 @@
 {
   "name": "@mintdrop/sdk",
+  "author": "IanH <ian@mintdrop.com>",
+  "version": "0.5.6",
   "description": "",
   "keywords": [
     "mintdrop",
@@ -8,34 +10,42 @@
     "web3",
     "react"
   ],
-  "author": "ianh.eth",
-  "version": "0.5.6",
   "type": "module",
-  "main": "./dist/sdk.cjs",
-  "module": "./dist/sdk.js",
-  "types": "./dist/sdk.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "import": "./dist/sdk.js",
-    "require": "./dist/sdk.cjs"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css"
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "vite build",
-    "postbuild": "tsc --emitDeclarationOnly",
-    "test:dev": "vitest",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "build:watch": "nodemon --exec \"pnpm build\"",
+    "anvil": "anvil --chain-id 5 --fork-url https://goerli.infura.io/v3/e6481145ca1442b7bf2a8444a8cd0fc8",
+    "test": " vitest",
+    "test:ci": "pnpm test:coverage && pnpm test:report",
     "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
-    "test:coverage": "CI=true vitest --coverage",
-    "test": "pnpm test:coverage && pnpm test:report"
+    "test:coverage": "CI=true vitest --coverage"
   },
   "files": [
-    "dist",
+    "dist/*",
     "README.md"
   ],
   "license": "MIT",
   "dependencies": {
+    "@ethersproject/providers": "^5.7.1",
     "@wagmi/core": "^0.5.7",
     "classnames": "^2.3.1",
-    "dayjs": "^1.11.5"
+    "clsx": "^1.2.1",
+    "connectkit": "^0.0.2",
+    "cross-fetch": "^3.1.5",
+    "dayjs": "^1.11.5",
+    "ethers": "^5.6.8",
+    "twind": "^0.16.17",
+    "wagmi": "^0.7"
   },
   "devDependencies": {
     "@tanstack/react-query": "^4.3.4",
@@ -47,22 +57,25 @@
     "@vitejs/plugin-react": "^2.0.1",
     "@vitest/coverage-c8": "^0.23.0",
     "@wagmi/core": "^0.5.6",
+    "autoprefixer": "^10.4.12",
     "c8": "^7.12.0",
+    "concurrently": "^7.4.0",
     "ethers": "^5.6.8",
     "jsdom": "^20.0.0",
+    "nock": "^13.2.9",
+    "postcss": "^8.4.18",
     "react": ">=17",
     "react-dom": ">=17",
+    "tailwindcss": "^3.1.8",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4",
     "vi-fetch": "^0.8.0",
     "vite": "^3.0.9",
     "vitest": "^0.23.0",
-    "wagmi": "0.5.x || 0.6.x"
+    "vitest-fetch-mock": "^0.2.1"
   },
   "peerDependencies": {
-    "ethers": "^5.6.8",
     "react": ">=17",
-    "react-dom": ">=17",
-    "wagmi": "^0.6.2"
+    "react-dom": ">=17"
   }
 }

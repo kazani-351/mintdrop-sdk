@@ -1,0 +1,69 @@
+---
+title: useContract
+description: Get the Mintdrop drop for the given context
+---
+
+# useContract
+
+Hook for accessing the current Mintdrop `drop` object.
+
+```tsx
+import { useContract } from "@mintdrop/sdk"
+```
+
+## Usage
+
+```tsx
+import { useContract } from "@mintdrop/sdk"
+
+const Example = () => {
+  const contract = useContract()
+  const [name, setName] = useState()
+
+  useEffect(() => {
+    contract?.name().then(setName)
+  }, [contract])
+
+  return (
+    <div>
+      <h1>
+        Contract:{" "}
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={etherscanAddressURL(contract?.address)}
+        >
+          {contract?.address}
+        </a>
+      </h1>
+
+      <p>Name: {name}</p>
+    </div>
+  )
+}
+```
+
+import UseContract from "../../examples/UseContract"
+
+<UseContract />
+
+## Returns
+
+```json
+drop: {
+  id: string
+
+  address: string
+  chainId: number        // see https://chainlist.org for full list
+  abi: ContractInterface // contract ABI
+
+  groups: {
+    name: string         // group name (PREMINT Allowlist, VIPs, etc)
+    signer: string       // group signer address
+  }[]
+
+  maxSupply: number
+  startTime: number      // ETH timestamp (seconds)
+  endTime: number        // ETH timestamp (seconds)
+}
+```

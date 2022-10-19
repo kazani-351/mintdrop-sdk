@@ -1,0 +1,19 @@
+@import "@mintdrop/sdk/style.css";
+
+html.dark .dark\:block {
+  display: block !important;
+}
+
+html.dark .dark\:hidden {
+  display: none !important;
+}
+
+html.dark body,
+html.dark .dark\:bg-dark {
+  background-color: #131222 !important;
+}
+
+main a,
+.text-primary-500 {
+  color: #53ddb4;
+}

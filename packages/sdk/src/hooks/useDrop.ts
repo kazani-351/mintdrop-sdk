@@ -1,8 +1,9 @@
 import { useContext } from "react"
 
-import { Context } from "../components/MintdropProvider"
-import type { Drop } from "../types"
+import { Context } from "../providers/MintdropProvider"
+import { Drop } from "../types"
 
 export function useDrop(): Drop {
-  return useContext(Context)
+  const { drop } = useContext(Context)
+  return drop
 }

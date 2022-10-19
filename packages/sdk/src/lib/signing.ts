@@ -16,7 +16,7 @@ import { Signer, utils } from "ethers"
  */
 export function hash(payload: string) {
   const message = utils.solidityPack(["address"], [payload])
-  const hash = utils.solidityKeccak256(["bytes"], [message])
+  const hash = utils.keccak256(message)
   return hash
 }
 

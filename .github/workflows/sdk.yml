@@ -28,7 +28,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm build
+        run: pnpm --dir packages/sdk build
 
       - name: Install rust
         uses: actions-rs/toolchain@v1
@@ -37,15 +37,17 @@ jobs:
           target: wasm32-unknown-unknown
           profile: minimal
           override: true
-      - name: Install Anvil
+
+      - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
+
       - name: Launch Anvil
         run: anvil --fork-url=https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161 &
 
       - name: Test
-        run: pnpm --dir packages/sdk test
+        run: pnpm --dir packages/sdk test:ci
         env:
           VANITY_ADDRESS: ${{ secrets.VANITY_ADDRESS }}
           VANITY_PK: ${{ secrets.VANITY_PK }}

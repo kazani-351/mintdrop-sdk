@@ -1,0 +1,8 @@
+[phases.setup]
+
+[phases.build]
+# cmds = ["curl -L https://foundry.paradigm.xyz | bash", "foundryup", "pnpm --dir packages/sdk build", "pnpm --dir docs build"]
+cmds = ["pnpm --dir packages/sdk build", "pnpm --dir docs build"]
+
+[start]
+cmd = 'pnpm --dir docs start'

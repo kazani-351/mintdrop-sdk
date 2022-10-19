@@ -1,7 +1,9 @@
 # Compiled things
 artifacts
 build
+cache
 dist
+out
 
 # Logs
 logs

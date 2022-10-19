@@ -1,0 +1,26 @@
+---
+title: Next.js
+pageTitle: Mintdrop - Documentation
+description: Next.js Install Instructions
+---
+
+# Next.js
+
+Add the `MintdropProvider` into your \_app.jsx or \_app.tsx.
+
+```tsx
+import "@mintdrop/sdk/style.css"
+import { MintdropProvider } from "@mintdrop/sdk"
+
+const DROP_ID = "... your drop ID"
+
+const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+  return (
+    <MintdropProvider drop={DROP_ID}>
+      <Component {...pageProps} />
+    </MintdropProvider>
+  )
+}
+
+export default App
+```

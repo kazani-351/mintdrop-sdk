@@ -23,8 +23,8 @@ export default defineConfig({
   build: {
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, "src/sdk.ts"),
-      fileName: (format) => `sdk.${format === "cjs" ? "cjs" : "js"}`,
+      entry: resolve(__dirname, "src/index.ts"),
+      fileName: (format) => `index.${format === "cjs" ? "cjs" : "js"}`,
       formats: ["es", "cjs"]
     },
     rollupOptions: {

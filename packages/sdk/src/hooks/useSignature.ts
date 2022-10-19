@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
-import { useAccount } from "wagmi"
+import { useAccount, useBlockNumber } from "wagmi"
 
-import { getSignature } from "../api"
 import { Signature } from "../types"
-import { useBlockBeat } from "./useBlockBeat"
+import { useAPI } from "./useAPI"
 import { useContract } from "./useContract"
 import { useDrop } from "./useDrop"
 
@@ -12,10 +11,11 @@ type UseSignature = Signature & {
 }
 
 export function useSignature(): UseSignature {
-  const block = useBlockBeat()
-  const drop = useDrop()
   const { address } = useAccount()
+  const block = useBlockNumber()
+  const api = useAPI()
   const contract = useContract()
+  const drop = useDrop()
 
   const [signer, setSigner] = useState<string>()
   const [sig, setSig] = useState<string>()
@@ -23,7 +23,7 @@ export function useSignature(): UseSignature {
 
   useEffect(() => {
     if (!drop?.id || !address) return
-    getSignature(drop.id, address).then((res) => {
+    api.getSignature(address).then((res) => {
       if (res) {
         const { sig, signer } = res
         setSig(sig)
@@ -40,10 +40,10 @@ export function useSignature(): UseSignature {
       setValid(undefined)
     } else {
       // Support old naming
-      const func = contract.canSignatureMint || contract.canGroupMint
-      func(sig, 1)
-        .then(setValid)
-        .catch(() => setValid(false)) // this function throws at the contract with reason
+      const func = contract.canGroupMint
+        ? contract.canGroupMint(sig, 1)
+        : contract.canSignatureMint(address, sig, 1)
+      func.then(setValid).catch(() => setValid(false)) // this function throws at the contract with reason
     }
   }, [block, sig, contract])
 

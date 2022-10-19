@@ -1,0 +1,28 @@
+---
+title: TokenGate
+description: Component to control token gating
+---
+
+# \<TokenGate /\>
+
+Allows you to control access to a particular component / resource based on the `wallet` owning a token.
+
+```tsx
+import { TokenGate, withMintdrop } from "@mintdrop/sdk"
+
+const MyComponent = () => {
+  return (
+    <TokenGate
+      wallet="0x..."
+      failure="Not allowed to view this content"
+      loading={<Loading />}
+    >
+      <GuardedContent />
+    </TokenGate>
+  )
+}
+
+export default withMintdrop(MyComponent, {
+  drop: "... your drop ID"
+})
+```
