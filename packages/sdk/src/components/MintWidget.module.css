@@ -3,7 +3,7 @@
 }
 
 .MintWidgetTitle {
-  @apply font-serif text-xl font-semibold text-white dark:text-white;
+  @apply text-xl font-bold text-white dark:text-white;
 }
 
 .MintWidgetGroups {
@@ -59,7 +59,7 @@
 }
 
 .MintGroupTitle {
-  @apply relative font-serif text-lg font-bold text-white dark:text-white -top-1;
+  @apply relative text-lg font-bold text-white dark:text-white -top-1;
 }
 
 .MintGroupCountdown {
