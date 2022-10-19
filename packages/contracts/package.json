@@ -1,6 +1,6 @@
 {
   "name": "@mintdrop/contracts",
-  "version": "0.5.6",
+  "version": "0.6.0",
   "description": "Mintdrop Smart Contracts",
   "scripts": {
     "build": "forge build",
