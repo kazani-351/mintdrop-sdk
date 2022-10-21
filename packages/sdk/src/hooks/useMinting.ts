@@ -3,7 +3,6 @@ import { useAccount, useBlockNumber, useSigner } from "wagmi"
 import { ethToWei, weiToEth } from "../utils"
 import { useAllowList } from "./useAllowList"
 import { useContract } from "./useContract"
-import { useDrop } from "./useDrop"
 import { useSignature } from "./useSignature"
 
 type PublicConfig = {
@@ -16,8 +15,7 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
   const block = useBlockNumber()
   const contract = useContract()
   const { address } = useAccount()
-  const drop = useDrop()
-  const { data: signer } = useSigner({ chainId: drop?.chainId })
+  const { data: signer } = useSigner()
   const signature = useSignature()
   const group = useAllowList()
 
