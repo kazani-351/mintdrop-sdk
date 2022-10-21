@@ -1,10 +1,10 @@
-import styles from "./MintButton.module.css"
-
 import React from "react"
 import { useCounts, useDrop, useMinting, useSignature } from "../hooks"
 import classNames from "clsx"
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi"
 import { responsiveTextColor } from "../utils/colors"
+
+import styles from "./MintButton.module.css"
 
 import ConnectWalletButton from "./ConnectButton"
 
@@ -20,7 +20,7 @@ type Props = {
 export default function MintButton(props: Props) {
   const {
     onError,
-    color,
+    color = "#53DDB4",
     text = "Mint Now",
     textColor,
     className,
@@ -80,7 +80,13 @@ export default function MintButton(props: Props) {
   }
 
   if (!isConnected) {
-    return <ConnectWalletButton themeColor={backgroundColor} />
+    return (
+      <ConnectWalletButton
+        className={classNames(className, styles.MintButton)}
+        style={{ ...style, color: buttonTextColor, backgroundColor }}
+        color={backgroundColor}
+      />
+    )
   }
 
   if (!drop?.address) {

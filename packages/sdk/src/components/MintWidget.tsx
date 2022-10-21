@@ -1,7 +1,7 @@
 import React from "react"
 import Day from "dayjs"
 import { useDrop, useTiming } from "../hooks"
-import classNames from "clsx"
+import classNames, { clsx } from "clsx"
 import { countdown } from "../utils/formatting"
 
 import styles from "./MintWidget.module.css"
@@ -21,7 +21,7 @@ export default function MintWidget(props: Props) {
 
   return (
     <div
-      className={classNames(className, styles.MintWidget)}
+      className={clsx(className, styles.MintWidget)}
       style={{
         width: 350,
         borderColor: color || "#53DDB4"

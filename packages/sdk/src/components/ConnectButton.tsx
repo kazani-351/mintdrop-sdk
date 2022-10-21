@@ -1,17 +1,33 @@
 import React from "react"
+import clsx from "clsx"
 import { useConnect } from "wagmi"
+import { responsiveTextColor } from "../utils/colors"
 
-const ConnectWalletButton = ({ themeColor }) => {
+import styles from "./ConnectButton.module.css"
+
+type Props = {
+  className?: string
+  style?: React.CSSProperties
+  color: string
+  text?: string
+  textColor?: string
+}
+
+const ConnectWalletButton = (props: Props) => {
+  const { className, color, textColor, text = "Connect Wallet", style } = props
   const { connect, connectors } = useConnect()
   const connector = connectors[0]
 
+  const backgroundColor = color
+  const buttonTextColor = textColor || responsiveTextColor(backgroundColor)
+
   return (
     <button
-      className="items-center justify-center block w-full p-3 space-x-2 text-sm font-semibold text-white uppercase rounded-full"
-      style={{ backgroundColor: themeColor || "#53DDB4" }}
+      className={clsx(className, styles.ConnectWalletButton)}
+      style={{ ...style, color: buttonTextColor, backgroundColor }}
       onClick={() => connect({ connector })}
     >
-      <span>Connect Wallet</span>
+      {text}
     </button>
   )
 }

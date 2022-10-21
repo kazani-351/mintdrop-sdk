@@ -1,6 +1,7 @@
+import { debounce } from "lodash"
 import fetch from "cross-fetch"
-import { Contract } from "ethers"
-import type { Drop, Signature } from "../types"
+import { BigNumber, Contract } from "ethers"
+import type { Counts, Drop, Signature } from "../types"
 import { Client } from "wagmi"
 
 export enum ENV {
@@ -27,7 +28,7 @@ export class API {
     if (opts.env) this.env = opts.env
   }
 
-  async init(client: Client): Promise<void> {
+  async init(client: Client): Promise<API> {
     this.drop = await fetch(this.host + "/drops/" + this.dropId).then((res) =>
       res.json()
     )
@@ -41,7 +42,45 @@ export class API {
           : client.config.provider
       this.contract = new Contract(this.drop.address, this.drop.abi, provider)
     }
+
+    return this
   }
+
+  getCounts = debounce(
+    (): Promise<Counts> => {
+      if (!this.contract) return null
+
+      // ethers.providers.JsonRpcBatchProvider
+      const functions = [
+        this.contract?.totalSupply().then((res: BigNumber) => res.toNumber()),
+        this.contract?.maxSupply
+          ? this.contract
+              ?.maxSupply()
+              .then((res: BigNumber) => res.toNumber())
+              .then((supply: number) => {
+                if (supply === 0) return Number.POSITIVE_INFINITY
+                else return supply
+              })
+          : Number.POSITIVE_INFINITY
+      ]
+
+      return Promise.all(functions).then(
+        ([totalSupply, maxSupply]: [number, number]) => {
+          let remaining = maxSupply - totalSupply
+          // This may or may not have been a problem before 🙈
+          if (remaining < 0) remaining = 0
+
+          return {
+            maxSupply,
+            totalSupply,
+            remaining
+          }
+        }
+      )
+    },
+    5000,
+    { leading: true }
+  )
 
   async getSignature(address: string): Promise<Signature> {
     const url = this.host + "/drops/" + this.dropId + "/sig/" + address

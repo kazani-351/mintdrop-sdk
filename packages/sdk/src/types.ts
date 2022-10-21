@@ -22,6 +22,12 @@ export type Drop = {
   maxPerWallet: number
 }
 
+export type Counts = {
+  maxSupply: number
+  totalSupply: number
+  remaining: number
+}
+
 export type Signature = {
   signer: string
   sig: string

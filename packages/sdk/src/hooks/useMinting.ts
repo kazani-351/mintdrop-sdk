@@ -72,7 +72,7 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
         })
         .finally(() => setMinting(false))
     },
-    [contract, config, timeout]
+    [signer, contract, config, timeout]
   )
 
   const signatureMint = useCallback(
@@ -102,7 +102,7 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
         })
         .finally(() => setMinting(false))
     },
-    [contract, group, signature, timeout]
+    [signer, contract, group, signature, timeout]
   )
 
   return {

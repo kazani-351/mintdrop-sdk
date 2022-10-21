@@ -6,7 +6,6 @@ import {
   WagmiConfig
 } from "wagmi"
 import { ConnectKitProvider, getDefaultClient } from "connectkit"
-import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
 import type { WagmiConfigProps } from "wagmi"
 
@@ -22,6 +21,8 @@ export const Context = createContext({
 type Props = {
   children: ReactNode
   client?: WagmiConfigProps["client"]
+  chains?: Parameters<typeof configureChains>[0]
+  providers?: Parameters<typeof configureChains>[1]
   drop: string
   host?: string
 }
@@ -58,11 +59,14 @@ function Provider(props: Props) {
 
 export default function MintdropProvider({
   children,
-  client = createClient(),
+  client,
+  chains,
+  providers,
   ...props
 }: Props) {
+  const _client = client || createClient({ chains, providers })
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig client={_client}>
       <ConnectKitProvider
         theme="auto"
         mode="dark"
@@ -77,7 +81,7 @@ export default function MintdropProvider({
           "--ck-secondary-button-hover-background": "#DDE2E5"
         }}
       >
-        <Provider client={client} {...props}>
+        <Provider client={_client} {...props}>
           {children}
         </Provider>
       </ConnectKitProvider>
@@ -85,14 +89,15 @@ export default function MintdropProvider({
   )
 }
 
-const createClient = () => {
+export function createClient(
+  props: {
+    chains?: Parameters<typeof configureChains>[0]
+    providers?: Parameters<typeof configureChains>[1]
+  } = {}
+): WagmiConfigProps["client"] {
   const { chains, provider, webSocketProvider } = configureChains(
-    // [chain.rinkeby],
-    [chain.mainnet, chain.goerli, chain.rinkeby],
-    [
-      alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY }),
-      publicProvider()
-    ]
+    props.chains || [chain.mainnet, chain.goerli],
+    props.providers || [publicProvider()]
   )
 
   const connectKitProvider = getDefaultClient({

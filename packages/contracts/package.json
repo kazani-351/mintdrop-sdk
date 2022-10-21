@@ -4,7 +4,7 @@
   "description": "Mintdrop Smart Contracts",
   "scripts": {
     "build": "forge build",
-    "build:watch": "nodemon --exec \"pnpm build\"",
+    "dev": "nodemon --exec \"pnpm build\"",
     "test": "forge test",
     "test:verbose": "forge test -vv",
     "test:gas": "forge test --gas-report -vv",

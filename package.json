@@ -5,7 +5,6 @@
   "scripts": {
     "clean": "pnpm -r clean",
     "build": "pnpm --aggregate-output --enable-pre-post-scripts -r build",
-    "build:watch": "pnpm -r build:watch",
     "dev": "pnpm --aggregate-output --enable-pre-post-scripts -r dev",
     "test": "pnpm --aggregate-output -r test",
     "generate": "pnpm -r generate",
@@ -34,5 +33,9 @@
   },
   "dependencies": {
     "next": "^12.2.5"
-  }
+  },
+  "workspaces": [
+    "docs",
+    "packages/**"
+  ]
 }

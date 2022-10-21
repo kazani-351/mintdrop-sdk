@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "next build",
     "dev": "nodemon --exec \"next dev\"",
-    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@mintdrop/contracts": "workspace:*",
     "@mintdrop/sdk": "workspace*",
+    "abi-decoder": "^2.4.0",
     "dayjs": "^1.11.5",
     "next": "12.3.1",
     "next-tools": "^0.0.7",

@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "vite build && tsc --emitDeclarationOnly",
-    "build:watch": "nodemon --exec \"pnpm build\"",
+    "dev": "nodemon --exec \"pnpm build\"",
     "anvil": "anvil --chain-id 5 --fork-url https://goerli.infura.io/v3/e6481145ca1442b7bf2a8444a8cd0fc8",
     "test": " vitest",
     "test:ci": "pnpm test:coverage && pnpm test:report",
@@ -43,6 +43,7 @@
     "cross-fetch": "^3.1.5",
     "dayjs": "^1.11.5",
     "ethers": "^5.6.8",
+    "lodash": "^4.17.21",
     "twind": "^0.16.17",
     "wagmi": "^0.6.0"
   },
