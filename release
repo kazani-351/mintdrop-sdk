@@ -6,4 +6,4 @@ pnpm changeset version
 pnpm clean
 pnpm generate # generate after version
 pnpm build # build again to ensure generated files
-pnpm --no-git-checks --filter "@mintdrop/*" publish
+pnpm --filter "@mintdrop/*" publish
