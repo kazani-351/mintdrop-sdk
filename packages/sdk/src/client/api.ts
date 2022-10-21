@@ -1,4 +1,4 @@
-import { debounce } from "lodash"
+import lodash from "lodash"
 import fetch from "cross-fetch"
 import { BigNumber, Contract } from "ethers"
 import type { Counts, Drop, Signature } from "../types"
@@ -46,7 +46,7 @@ export class API {
     return this
   }
 
-  getCounts = debounce(
+  getCounts = lodash.debounce(
     (): Promise<Counts> => {
       if (!this.contract) return null
 
