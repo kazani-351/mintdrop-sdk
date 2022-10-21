@@ -29,8 +29,8 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
   const canMint = canSignatureMint || canPublicMint
 
   useEffect(() => {
-    contract
-      ?.publicMinting()
+    const func = contract?.publicMinting
+    func?.()
       .then((config) => {
         setConfig({
           mintPrice: weiToEth(config.mintPrice),
@@ -50,8 +50,6 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
 
   const publicMint = useCallback(
     (count: number) => {
-      console.log("publicMint", { signer })
-
       setMinting(true)
       const value = ethToWei(config.mintPrice * count)
 
@@ -77,8 +75,6 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
 
   const signatureMint = useCallback(
     (count: number) => {
-      console.log("signatureMint", { signer })
-
       setMinting(true)
       const value = ethToWei(group.mintPrice * count)
 
@@ -87,7 +83,7 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
         contract.connect(signer).signatureMint ||
         contract.connect(signer).groupMint
 
-      return func(address, signature.sig, count, {
+      return func?.(address, signature.sig, count, {
         value
       })
         .then((res) => res.wait())
