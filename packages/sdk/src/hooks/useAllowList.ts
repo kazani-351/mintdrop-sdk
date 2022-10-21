@@ -39,7 +39,7 @@ export function useAllowList(): AllowList | null {
     }
 
     // Support old method signature
-    const func = contract.accessLists || contract.groups
+    const func = contract.allowLists || contract.accessLists || contract.groups
 
     func(signature.signer)
       .then((access) => {
