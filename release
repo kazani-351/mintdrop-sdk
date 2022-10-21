@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
 pnpm install
-# pnpm changeset
-# pnpm changeset version
-pnpm --filter "@mintdrop/*" patch
 pnpm clean
 pnpm generate
 pnpm build
-pnpm --filter "@mintdrop/*" publish
+
+# (cd packages/contracts && pnpm version patch)
+# (cd packages/sdk && pnpm version patch)
+
+# pnpm --filter "@mintdrop/*" publish
