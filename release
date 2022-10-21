@@ -5,7 +5,7 @@ pnpm clean
 pnpm generate
 pnpm build
 
-# (cd packages/contracts && pnpm version patch)
-# (cd packages/sdk && pnpm version patch)
+(cd packages/contracts && pnpm version patch)
+(cd packages/sdk && pnpm version patch)
 
-# pnpm --filter "@mintdrop/*" publish
+pnpm --no-git-checks --filter "@mintdrop/*" publish
