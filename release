@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
 
 pnpm install
-pnpm changeset
-pnpm changeset version
+# pnpm changeset
+# pnpm changeset version
+pnpm --filter "@mintdrop/*" patch
 pnpm clean
-pnpm generate # generate after version
-pnpm build # build again to ensure generated files
+pnpm generate
+pnpm build
 pnpm --filter "@mintdrop/*" publish
