@@ -3,7 +3,7 @@ import { SafeHydrate } from "next-tools"
 
 function UseTokenGating() {
   const { address } = wagmi.useAccount()
-  const { allow } = useTokenGating(address)
+  const { allow } = useTokenGating(address as `0x${string}`)
 
   return (
     <SafeHydrate>
