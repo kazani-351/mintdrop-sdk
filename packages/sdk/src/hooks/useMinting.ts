@@ -43,7 +43,7 @@ export function useMinting({ timeout = 3000 } = { timeout: 3000 }) {
 
   useEffect(() => {
     contract
-      ?.canPublicMint(address, 1)
+      ?.canPublicMint?.(address, 1)
       .then(setCanPublicMint)
       .catch(() => setCanPublicMint(false)) // this function throws at the contract with reason
   }, [block, contract])
