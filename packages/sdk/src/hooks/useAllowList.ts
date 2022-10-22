@@ -11,6 +11,7 @@ type AllowList = {
   mintPrice: number
   maxPerWallet: number
   startTime: Date
+  endTime: Date
 }
 
 export function useAllowList(): AllowList | null {
@@ -21,6 +22,7 @@ export function useAllowList(): AllowList | null {
   const [maxPerWallet, setMaxPerWallet] = useState<number>()
   const [mintPrice, setMintPrice] = useState<number>()
   const [startTime, setStartTime] = useState<Date>()
+  const [endTime, setEndTime] = useState<Date>()
   const [mintCount, setMintCount] = useState<number>()
 
   const reset = () => {
@@ -51,9 +53,8 @@ export function useAllowList(): AllowList | null {
           setMintPrice(weiToEth(access.mintPrice))
           setMaxPerWallet(access.maxPerWallet.toNumber())
 
-          setStartTime(
-            Day.unix(access.maxPerWallet.startTime.toNumber()).toDate() as Date
-          )
+          setStartTime(Day.unix(access.startTime.toNumber()).toDate() as Date)
+          setEndTime(Day.unix(access.endTime.toNumber()).toDate() as Date)
         }
       })
       .catch((err) => {
@@ -67,7 +68,8 @@ export function useAllowList(): AllowList | null {
       mintCount,
       mintPrice,
       maxPerWallet,
-      startTime
+      startTime,
+      endTime
     }
   }
 
